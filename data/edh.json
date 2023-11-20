@@ -1,0 +1,3742 @@
+{
+  "decks": {
+    "hooper": [
+      "Aegar",
+      "Esika",
+      "Etrata",
+      "Go-Shintai",
+      "Kozilek",
+      "Miirym",
+      "Shorikai",
+      "Zirilan"
+    ],
+    "june": [
+      "Animar",
+      "Borborygmos",
+      "Erinis",
+      "Feldon",
+      "Inalla",
+      "Rashmi",
+      "Sek'Kuar",
+      "Tuvasa",
+      "Yidris"
+    ],
+    "rachael": [
+      "Alela, Artful Provocateur",
+      "Chainer",
+      "Muldrotha",
+      "Teferi"
+    ],
+    "tony": [
+      "Carth",
+      "Giada",
+      "Liesa"
+    ]
+  },
+  "games": [
+    {
+      "date": "1/19/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Zirilan"
+            },
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            }
+          ],
+          "winner": "Tuvasa"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Miirym"
+            },
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            }
+          ],
+          "winner": "Tuvasa"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Miirym"
+            },
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            }
+          ],
+          "winner": "Alela, Artful Provocateur"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Etrata"
+            },
+            {
+              "player": "June",
+              "deck": "Sek'Kuar"
+            }
+          ],
+          "winner": "Etrata"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Zirilan"
+            },
+            {
+              "player": "June",
+              "deck": "Inalla"
+            }
+          ],
+          "winner": "Muldrotha"
+        }
+      ]
+    },
+    {
+      "date": "1/26/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kozilek"
+            },
+            {
+              "player": "June",
+              "deck": "Erinis"
+            }
+          ],
+          "winner": "Kozilek"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kozilek"
+            },
+            {
+              "player": "June",
+              "deck": "Animar"
+            }
+          ],
+          "winner": "Animar"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kozilek"
+            },
+            {
+              "player": "June",
+              "deck": "Animar"
+            }
+          ],
+          "winner": "Kozilek"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kozilek"
+            },
+            {
+              "player": "June",
+              "deck": "Animar"
+            }
+          ],
+          "winner": "Alela, Artful Provocateur"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Teferi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Aegar"
+            },
+            {
+              "player": "June",
+              "deck": "Rashmi"
+            }
+          ],
+          "winner": "Rashmi"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Teferi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Shorikai"
+            },
+            {
+              "player": "June",
+              "deck": "Feldon"
+            }
+          ],
+          "winner": "Shorikai"
+        }
+      ]
+    },
+    {
+      "date": "2/2/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Aegar"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "June",
+              "deck": "Erinis"
+            },
+            {
+              "player": "Tony",
+              "deck": "Giada"
+            }
+          ],
+          "winner": "Muldrotha"
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Borborygmos"
+            },
+            {
+              "player": "Tony",
+              "deck": "Liesa"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Go-Shintai"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            }
+          ],
+          "winner": "Liesa"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "June",
+              "deck": "Yidris"
+            },
+            {
+              "player": "Tony",
+              "deck": "Carth"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Esika - Hooper"
+            }
+          ],
+          "winner": "Alela, Artful Provocateur"
+        }
+      ]
+    },
+    {
+      "date": "2/9/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Erinis"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Etrata"
+            },
+            {
+              "player": "Tony",
+              "deck": "Elsha"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            }
+          ],
+          "winner": "Erinis"
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Etrata"
+            },
+            {
+              "player": "Tony",
+              "deck": "Kaalia"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "June",
+              "deck": "Feldon"
+            }
+          ],
+          "winner": "Kaalia"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "June",
+              "deck": "Yidris"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Zirilan"
+            },
+            {
+              "player": "Tony",
+              "deck": "Jenson"
+            }
+          ],
+          "winner": "Yidris"
+        }
+      ]
+    },
+    {
+      "date": "2/16/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Inalla"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Aegar"
+            }
+          ],
+          "winner": "Inalla"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "The First Sliver"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Esika - Hooper"
+            },
+            {
+              "player": "Pham",
+              "deck": "Xenagos"
+            },
+            {
+              "player": "June",
+              "deck": "Mayael"
+            }
+          ],
+          "winner": "Esika - Hooper"
+        },
+        {
+          "players": [
+            {
+              "player": "Pham",
+              "deck": "Xenagos"
+            },
+            {
+              "player": "June",
+              "deck": "Mayael"
+            },
+            {
+              "player": "Rachael",
+              "deck": "The First Sliver"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Esika - Hooper"
+            }
+          ],
+          "winner": "Xenagos"
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Miirym"
+            },
+            {
+              "player": "Pham",
+              "deck": "Sefris"
+            }
+          ],
+          "winner": "Alela, Artful Provocateur"
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Shorikai"
+            },
+            {
+              "player": "Pham",
+              "deck": "Chatterfang"
+            },
+            {
+              "player": "June",
+              "deck": "Sharuum"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            }
+          ],
+          "winner": "Omnath"
+        }
+      ]
+    },
+    {
+      "date": "2/18/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "The First Sliver"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Feather"
+            },
+            {
+              "player": "June",
+              "deck": "Teneb"
+            }
+          ],
+          "winner": "Feather"
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Trostani"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Go-Shintai"
+            }
+          ],
+          "winner": "Trostani"
+        }
+      ]
+    },
+    {
+      "date": "2/23/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Yidris"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Tony",
+              "deck": "Avacyn"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Go-Shintai"
+            }
+          ],
+          "winner": "Avacyn"
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Miirym"
+            },
+            {
+              "player": "June",
+              "deck": "Yidris"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Tony",
+              "deck": "Linvala"
+            }
+          ],
+          "winner": "Linvala"
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Tony",
+              "deck": "Sigarda"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Go-Shintai"
+            },
+            {
+              "player": "June",
+              "deck": "Yennett"
+            }
+          ],
+          "winner": "Muldrotha"
+        },
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Kroxa"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Zirilan"
+            },
+            {
+              "player": "June",
+              "deck": "Sharuum"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            }
+          ],
+          "winner": "Zirilan"
+        }
+      ]
+    },
+    {
+      "date": "3/9/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Giada"
+            },
+            {
+              "player": "June",
+              "deck": "Lonis"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Yidris"
+            }
+          ],
+          "winner": "Omnath",
+          "eliminations": {
+            "8": [{
+              "eliminator": "Omnath",
+              "eliminated": [
+                "Giada",
+                "Lonis",
+                "Yidris"
+              ]
+            }]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Yidris"
+            },
+            {
+              "player": "Tony",
+              "deck": "Kaalia"
+            },
+            {
+              "player": "June",
+              "deck": "Lonis"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winner": "Kaalia",
+          "eliminations": {
+            "5": [{
+              "eliminator": "Kaalia",
+              "eliminated": [
+                "Yidris"
+              ]
+            }],
+            "6": [{
+              "eliminator": "Kaalia",
+              "eliminated": [
+                "Lonis"
+              ]
+            }],
+            "7": [{
+              "eliminator": "Kaalia",
+              "eliminated": [
+                "Muldrotha"
+              ]
+            }]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Yidris"
+            },
+            {
+              "player": "Tony",
+              "deck": "Edgar"
+            }
+          ],
+          "winner": "Yidris",
+          "eliminations": {
+            "6": [{
+              "eliminator": "Yidris",
+              "eliminated": [
+                "Edgar",
+                "Muldrotha"
+              ]
+            }],
+            "7": [{
+              "eliminator": "Yidris",
+              "eliminated": [
+                "Tuvasa"
+              ]
+            }]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Sharuum"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Yidris"
+            }
+          ],
+          "winner": "Sharuum",
+          "eliminations": {
+            "6": [{
+              "eliminator": "Sharuum",
+              "eliminated": [
+                "Alela, Artful Provocateur",
+                "Yidris"
+              ]
+            }]
+          }
+        }
+      ]
+    },
+    {
+      "date": "3/16/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Shorikai"
+            },
+            {
+              "player": "Tony",
+              "deck": "Kess"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "June",
+              "deck": "Maga"
+            }
+          ],
+          "winner": "Alela, Artful Provocateur",
+          "eliminations": {
+            "12": [{
+              "eliminator": "Alela, Artful Provocateur",
+              "eliminated": [
+                "Shorikai",
+                "Kess",
+                "Maga"
+              ]
+            }]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Yennett"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Aegar"
+            },
+            {
+              "player": "Tony",
+              "deck": "Liesa"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winner": "Yennett",
+          "eliminations": {
+            "11": [{
+              "eliminator": "Yennett",
+              "eliminated": [
+                "Aegar"
+              ]
+            }],
+            "13": [{
+              "eliminator": "Yennett",
+              "eliminated": [
+                "Liesa",
+                "Muldrotha"
+              ]
+            }]
+          }
+        }
+      ]
+    },
+    {
+      "date": "3/23/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Teneb"
+            },
+            {
+              "player": "Tony",
+              "deck": "Elsha"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Florian"
+            }
+          ],
+          "winner": "Florian",
+          "eliminations": {
+            "7": [{
+              "eliminator": "Florian",
+              "eliminated": [
+                "Teneb",
+                "Elsha",
+                "Muldrotha"
+              ]
+            }]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Elsha"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Florian"
+            },
+            {
+              "player": "June",
+              "deck": "Inalla"
+            }
+          ],
+          "winner": "Chainer",
+          "eliminations": {
+            "10": [{
+              "eliminator": "Chainer",
+              "eliminated": [
+                "Florian"
+              ]
+            }],
+            "11": [{
+              "eliminator": "Chainer",
+              "eliminated": [
+                "Elsha",
+                "Inalla"
+              ]
+            }]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Florian"
+            },
+            {
+              "player": "June",
+              "deck": "Lonis"
+            },
+            {
+              "player": "Tony",
+              "deck": "Linvala"
+            },
+            {
+              "player": "Rachael",
+              "deck": "The First Sliver"
+            }
+          ],
+          "winner": "Lonis",
+          "eliminations": {
+            "7": [{
+              "eliminator": "Lonis",
+              "eliminated": [
+                "Florian",
+                "Linvala",
+                "The First Sliver"
+              ]
+            }]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Feather"
+            },
+            {
+              "player": "June",
+              "deck": "Feldon"
+            },
+            {
+              "player": "Tony",
+              "deck": "Liesa"
+            }
+          ],
+          "winner": "Omnath",
+          "eliminations": {
+            "5": [{
+              "eliminator": "Omnath",
+              "eliminated": [
+                "Feather",
+                "Feldon",
+                "Liesa"
+              ]
+            }]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Feather"
+            },
+            {
+              "player": "June",
+              "deck": "Feldon"
+            },
+            {
+              "player": "Tony",
+              "deck": "Liesa"
+            }
+          ],
+          "winner": "Feather",
+          "eliminations": {
+            "14": [
+              {
+                "eliminator": "Alela, Artful Provocateur",
+                "eliminated": [
+                  "Liesa"
+                ]
+              },
+              {
+                "eliminator": "Feather",
+                "eliminated": [
+                  "Alela, Artful Provocateur",
+                  "Feldon"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "3/30/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Ruhan"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "June",
+              "deck": "Lonis"
+            }
+          ],
+          "winner": "Lonis",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Lonis",
+                "eliminated": [
+                  "Ruhan",
+                  "Aela"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Ruhan"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "June",
+              "deck": "Rashmi"
+            }
+          ],
+          "winner": "Alela, Artful Provocateur",
+          "eliminations": {
+            "5": [
+              {
+                "eliminator": "Alela, Artful Provocateur",
+                "eliminated": [
+                  "Ruhan",
+                  "Rashmi"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Rashmi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Ruhan"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            }
+          ],
+          "winner": "Rashmi",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Rashmi",
+                "eliminated": [
+                  "Ruhan",
+                  "Omnath"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "June",
+              "deck": "Sek'Kuar"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Ruhan"
+            }
+          ],
+          "winner": "Sek'Kuar",
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Ruhan",
+                "eliminated": [
+                  "Omnath"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Sek'Kuar",
+                "eliminated": [
+                  "Ruhan"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Gwyn"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            },
+            {
+              "player": "June",
+              "deck": "Trelasarra"
+            }
+          ],
+          "winner": "Gwyn",
+          "eliminations": {
+            "5": [
+              {
+                "eliminator": "Gwyn",
+                "eliminated": [
+                  "Trelasarra"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Gwyn",
+                "eliminated": [
+                  "Chainer"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            },
+            {
+              "player": "June",
+              "deck": "Trelasarra"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Gwyn"
+            }
+          ],
+          "winner": "Chainer",
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Trelasarra",
+                "eliminated": [
+                  "Gwyn"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Chainer",
+                "eliminated": [
+                  "Trelasarra"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Borborygmos"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Gwyn"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winner": "Borborygmos",
+          "eliminations": {
+            "24": [
+              {
+                "eliminator": "Borborygmos",
+                "eliminated": [
+                  "Gwyn",
+                  "Muldrotha"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "4/6/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Trelasarra"
+            },
+            {
+              "player": "Tony",
+              "deck": "Cormela"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "June",
+              "deck": "Inalla"
+            }
+          ],
+          "winner": "Cormela",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Trelasarra",
+                "eliminated": [
+                  "Inalla"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Cormela",
+                "eliminated": [
+                  "Muldrotha"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Cormela",
+                "eliminated": [
+                  "Trelasarra"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "June",
+              "deck": "Inalla"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Trelasarra"
+            },
+            {
+              "player": "Tony",
+              "deck": "Cormela"
+            }
+          ],
+          "winner": "Muldrotha",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Muldrotha",
+                "eliminated": [
+                  "Inalla",
+                  "Trelasarra",
+                  "Cormela"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Erinis"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Jared"
+            },
+            {
+              "player": "Tony",
+              "deck": "Teysa"
+            },
+            {
+              "player": "Rachael",
+              "deck": "The First Sliver"
+            }
+          ],
+          "winner": "Teysa",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Teysa",
+                "eliminated": [
+                  "Erinis",
+                  "Jared",
+                  "The First Sliver"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "4/11/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Ognis"
+            },
+            {
+              "player": "June",
+              "deck": "Teneb"
+            },
+            {
+              "player": "Tony",
+              "deck": "Sigarda"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winner": "Muldrotha",
+          "eliminations": {
+            "10": [
+              {
+                "eliminator": "Ognis",
+                "eliminated": [
+                  "Teneb"
+                ]
+              },
+              {
+                "eliminator": "Muldrotha",
+                "eliminated": [
+                  "Ognis",
+                  "Sigarda"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Inalla"
+            },
+            {
+              "player": "Tony",
+              "deck": "Kaalia"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Ognis"
+            }
+          ],
+          "winner": "Kaalia",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Kaalia",
+                "eliminated": [
+                  "Chainer"
+                ]
+              },
+              {
+                "eliminator": "Ognis",
+                "eliminated": [
+                  "Inalla"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Kaalia",
+                "eliminated": [
+                  "Ognis"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "4/18/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Mayael"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Jabari - Precon"
+            },
+            {
+              "player": "Pham",
+              "deck": "Jeska + Silas"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            }
+          ],
+          "winner": "Chainer",
+          "eliminations": {
+            "10": [
+              {
+                "eliminator": "Mayael",
+                "eliminated": [
+                  "Jabari - Precon",
+                  "Jeska + Silas"
+                ]
+              },
+              {
+                "eliminator": "Chainer",
+                "eliminated": [
+                  "Mayael"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Jabari - Precon"
+            },
+            {
+              "player": "Pham",
+              "deck": "Gabriel"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "June",
+              "deck": "Jasmine"
+            }
+          ],
+          "winner": "Jasmine",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Gabriel",
+                "eliminated": [
+                  "Jabari - Precon"
+                ]
+              }
+            ],
+            "10": [
+              {
+                "eliminator": "Jasmine",
+                "eliminated": [
+                  "Gabriel"
+                ]
+              }
+            ],
+            "11": [
+              {
+                "eliminator": "Jasmine",
+                "eliminated": [
+                  "Muldrotha"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Pham",
+              "deck": "Ur-Dragon - Pham"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "June",
+              "deck": "Kaervek"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Jabari - Precon"
+            }
+          ],
+          "winner": "Ur-Dragon - Pham",
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Ur-Dragon - Pham",
+                "eliminated": [
+                  "Sidar Jabari - Precon",
+                  "Omnath"
+                ]
+              },
+              {
+                "eliminator": "Ur-Dragon - Pham",
+                "eliminated": [
+                  "Kaervek"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "4/22/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Teysa"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Obeka"
+            },
+            {
+              "player": "Jason",
+              "deck": "Starke"
+            },
+            {
+              "player": "Pham",
+              "deck": "Sefris"
+            }
+          ],
+          "winner": "Obeka",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Obeka",
+                "eliminated": [
+                  "Sefris"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Obeka",
+                "eliminated": [
+                  "Starke"
+                ]
+              }
+            ],
+            "13": [
+              {
+                "eliminator": "Obeka",
+                "eliminated": [
+                  "Teysa"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Pham",
+              "deck": "Ur-Dragon - Pham"
+            },
+            {
+              "player": "Tony",
+              "deck": "Cormela"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Obeka"
+            },
+            {
+              "player": "Jason",
+              "deck": "The Golden Throne"
+            }
+          ],
+          "winner": "Cormela",
+          "eliminations": {
+            "12": [
+              {
+                "eliminator": "Cormela",
+                "eliminated": [
+                  "Ognis"
+                ]
+              }
+            ],
+            "13": [
+              {
+                "eliminator": "Cormela",
+                "eliminated": [
+                  "Ur-Dragon - Pham"
+                ]
+              }
+            ],
+            "14": [
+              {
+                "eliminator": "Cormela",
+                "eliminated": [
+                  "The Golden Throne"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "4/27/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Sharuum"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Mavinda"
+            },
+            {
+              "player": "Tony",
+              "deck": "Kaalia"
+            }
+          ],
+          "winner": "Sharuum",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Sharuum",
+                "eliminated": [
+                  "Omnath",
+                  "Mavinda",
+                  "Kaalia"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Mavinda"
+            },
+            {
+              "player": "Tony",
+              "deck": "Kaalia"
+            },
+            {
+              "player": "June",
+              "deck": "Yennett"
+            }
+          ],
+          "winner": "Mavinda",
+          "eliminations": {
+            "12": [
+              {
+                "eliminator": "Mavinda",
+                "eliminated": [
+                  "Omnath",
+                  "Kaalia",
+                  "Yennett"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Kroxa"
+            },
+            {
+              "player": "June",
+              "deck": "Lonis"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Ognis"
+            }
+          ],
+          "winner": "Lonis",
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Lonis",
+                "eliminated": [
+                  "Ognis"
+                ]
+              }
+            ],
+            "7": [
+              {
+                "eliminator": "Lonis",
+                "eliminated": [
+                  "Kroxa",
+                  "Alela, Artful Provocateur"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "5/2/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Skullbriar"
+            },
+            {
+              "player": "June",
+              "deck": "Wydwen"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winner": "Skullbriar",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Skullbriar",
+                "eliminated": [
+                  "Wydwen",
+                  "Muldrotha"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Wydwen"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Skullbriar"
+            }
+          ],
+          "winner": "Muldrotha",
+          "eliminations": {
+            "12": [
+              {
+                "eliminator": "Muldrotha",
+                "eliminated": [
+                  "Wydwen",
+                  "Skullbriar"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "5/18/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Jared"
+            },
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            },
+            {
+              "player": "Tony",
+              "deck": "Avacyn"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            }
+          ],
+          "winner": "Magnus",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Jared",
+                "eliminated": [
+                  "Tuvasa"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Jared",
+                "eliminated": [
+                  "Avacyn"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Magnus",
+                "eliminated": [
+                  "Jared"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Jared"
+            },
+            {
+              "player": "Tony",
+              "deck": "Carth"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            }
+          ],
+          "winner": "Jared",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Jared",
+                "eliminated": [
+                  "Carth",
+                  "Magnus"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Sek'Kuar"
+            },
+            {
+              "player": "Tony",
+              "deck": "Cormela"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Tivit"
+            }
+          ],
+          "winner": "Cormela",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Cormela",
+                "eliminated": [
+                  "Sek'Kuar",
+                  "Magnus",
+                  "Tivit"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Tivit"
+            },
+            {
+              "player": "June",
+              "deck": "Erinis"
+            },
+            {
+              "player": "Tony",
+              "deck": "Giada"
+            }
+          ],
+          "winner": "Tivit",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Tivit",
+                "eliminated": [
+                  "Erinis",
+                  "Giada"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Tivit",
+                "eliminated": [
+                  "Erinis"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "5/25/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Jared"
+            },
+            {
+              "player": "Tony",
+              "deck": "Solphim"
+            },
+            {
+              "player": "June",
+              "deck": "Sek'Kuar"
+            }
+          ],
+          "winner": "Solphim",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Solphim",
+                "eliminated": [
+                  "Magnus",
+                  "Jared",
+                  "Sek'Kuar"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Yidris"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Obeka"
+            },
+            {
+              "player": "Tony",
+              "deck": "Solphim"
+            }
+          ],
+          "winner": "Yidris",
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Yidris",
+                "eliminated": [
+                  "Omnath",
+                  "Obeka",
+                  "Solphim"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Ognis"
+            },
+            {
+              "player": "Tony",
+              "deck": "Zamriel"
+            },
+            {
+              "player": "June",
+              "deck": "Mayael"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winner": "Mayael",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Mayael",
+                "eliminated": [
+                  "Ognis",
+                  "Zamriel",
+                  "Muldrotha"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "5/30/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Skullbriar"
+            },
+            {
+              "player": "Tony",
+              "deck": "Solphim"
+            },
+            {
+              "player": "June",
+              "deck": "Teneb"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winner": "Solphim",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Skullbriar",
+                "eliminated": [
+                  "Teneb"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Skullbriar",
+                "eliminated": [
+                  "Muldrotha"
+                ]
+              },
+              {
+                "eliminator": "Solphim",
+                "eliminated": [
+                  "Skullbriar"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Trostani"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Mavinda"
+            },
+            {
+              "player": "Tony",
+              "deck": "Solphim"
+            }
+          ],
+          "winner": "Omnath",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Omnath",
+                "eliminated": [
+                  "Trostani",
+                  "Mavinda",
+                  "Solphim"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "6/22/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Mayael"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            },
+            {
+              "player": "Tony",
+              "deck": "Carth"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Tivit"
+            }
+          ],
+          "winner": "Tivit",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Tivit",
+                "eliminated": [
+                  "Carth"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Tivit",
+                "eliminated": [
+                  "Mayael",
+                  "Magnus"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            },
+            {
+              "player": "Tony",
+              "deck": "Carth"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Phage"
+            },
+            {
+              "player": "June",
+              "deck": "Yennett"
+            }
+          ],
+          "winner": "Magnus",
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Phage",
+                "eliminated": [
+                  "Yennett"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Magnus",
+                "eliminated": [
+                  "Carth",
+                  "Phage"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Esika - Precon"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Phage"
+            },
+            {
+              "player": "June",
+              "deck": "Yidris"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winner": "Yidris",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Yidris",
+                "eliminated": [
+                  "Esika - Precon",
+                  "Phage",
+                  "Muldrotha"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "6/29/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Phage"
+            },
+            {
+              "player": "June",
+              "deck": "Inalla"
+            },
+            {
+              "player": "Tony",
+              "deck": "Kroxa"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            }
+          ],
+          "winner": "Inalla",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Inalla",
+                "eliminated": [
+                  "Page"
+                ]
+              }
+            ],
+            "12": [
+              {
+                "eliminator": "Inalla",
+                "eliminated": [
+                  "Nethroi"
+                ]
+              }
+            ],
+            "13": [
+              {
+                "eliminator": "Inalla",
+                "eliminated": [
+                  "Kroxa"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Edgar"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Ur-Dragon - Hooper"
+            },
+            {
+              "player": "June",
+              "deck": "Jasmine"
+            }
+          ],
+          "winner": "Ur-Dragon - Hooper",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Ur-Dragon - Hooper",
+                "eliminated": [
+                  "Edgar",
+                  "Nethroi"
+                ]
+              }
+            ],
+            "10": [
+              {
+                "eliminator": "Ur-Dragon - Hooper",
+                "eliminated": [
+                  "Jasmine"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "7/3/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Pham",
+              "deck": "Saruman"
+            },
+            {
+              "player": "Jason",
+              "deck": "Kaalia"
+            },
+            {
+              "player": "Tony",
+              "deck": "Sigarda"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Phage"
+            }
+          ],
+          "winner": "Saruman",
+          "eliminations": {
+            "5": [
+              {
+                "eliminator": "Sigarda",
+                "eliminated": [
+                  "Kaalia"
+                ]
+              }
+            ],
+            "11": [
+              {
+                "eliminator": "Saruman",
+                "eliminated": [
+                  "Sigarda",
+                  "Phage"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Ur-Dragon - Hooper"
+            },
+            {
+              "player": "Pham",
+              "deck": "Xenagos"
+            },
+            {
+              "player": "Jason",
+              "deck": "Teysa"
+            },
+            {
+              "player": "Tony",
+              "deck": "Cormela"
+            }
+          ],
+          "winner": "Xenagos",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Teysa",
+                "eliminated": [
+                  "Ur-Dragon - Hooper"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Xenagos",
+                "eliminated": [
+                  "Teysa",
+                  "Cormela"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Kroxa"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Jabari - Precon"
+            },
+            {
+              "player": "Pham",
+              "deck": "Gabriel"
+            },
+            {
+              "player": "Jason",
+              "deck": "Nekusar"
+            }
+          ],
+          "winner": "Jabari - Precon",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Jabari - Precon",
+                "eliminated": [
+                  "Nekusar"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Jabari - Precon",
+                "eliminated": [
+                  "Kroxa",
+                  "Gabriel"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "7/6/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Ur-Dragon - Hooper"
+            },
+            {
+              "player": "June",
+              "deck": "Erinis"
+            }
+          ],
+          "winner": "Erinis",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Erinis",
+                "eliminated": [
+                  "Nethroi",
+                  "Ur-Dragon - Hooper"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Storvald"
+            },
+            {
+              "player": "June",
+              "deck": "Teneb"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            }
+          ],
+          "winner": "Storvald",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Storvald",
+                "eliminated": [
+                  "Teneb"
+                ]
+              }
+            ],
+            "11": [
+              {
+                "eliminator": "Storvald",
+                "eliminated": [
+                  "Nethroi"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Teneb"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Storvald"
+            }
+          ],
+          "winner": "Teneb",
+          "eliminations": {
+            "11": [
+              {
+                "eliminator": "Teneb",
+                "eliminated": [
+                  "Storvald"
+                ]
+              }
+            ],
+            "12": [
+              {
+                "eliminator": "Teneb",
+                "eliminated": [
+                  "Magnus"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "7/18/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Storvald"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            },
+            {
+              "player": "June",
+              "deck": "Sek'Kuar"
+            },
+            {
+              "player": "Tony",
+              "deck": "Elsha"
+            }
+          ],
+          "winner": "Sek'Kuar",
+          "eliminations": {
+            "11": [
+              {
+                "eliminator": "Sek'Kuar",
+                "eliminated": [
+                  "Magnus"
+                ]
+              }
+            ],
+            "12": [
+              {
+                "eliminator": "Sek'Kuar",
+                "eliminated": [
+                  "Storvald",
+                  "Elsha"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Giada"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Tahngarth"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "June",
+              "deck": "Yennett"
+            }
+          ],
+          "winner": "Tahngarth",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Tahngarth",
+                "eliminated": [
+                  "Gida"
+                ]
+              }
+            ],
+            "11": [
+              {
+                "eliminator": "Tahngarth",
+                "eliminated": [
+                  "Muldrotha",
+                  "Yennett"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "8/24/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "June",
+              "deck": "Erinis"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Giada"
+            },
+            {
+              "player": "Tony",
+              "deck": "Kaalia"
+            }
+          ],
+          "winner": "Erinis",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Nethroi",
+                "eliminated": [
+                  "Kaalia"
+                ]
+              },
+              {
+                "eliminator": "Erinis",
+                "eliminated": [
+                  "Nethroi",
+                  "Giada"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "9/14/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Pham",
+              "deck": "Saruman"
+            },
+            {
+              "player": "June",
+              "deck": "Feldon"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Tahngarth"
+            }
+          ],
+          "winner": "Nethroi",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Nethroi",
+                "eliminated": [
+                  "Tahngarth"
+                ]
+              }
+            ],
+            "13": [
+              {
+                "eliminator": "Nethroi",
+                "eliminated": [
+                  "Saruman",
+                  "Feldon"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Pham",
+              "deck": "Ur-Dragon - Pham"
+            },
+            {
+              "player": "June",
+              "deck": "Borborygmos"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Tahngarth"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            }
+          ],
+          "winner": "Borborygmos",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Borborygmos",
+                "eliminated": [
+                  "Tahngarth"
+                ]
+              }
+            ],
+            "11": [
+              {
+                "eliminator": "Borborygmos",
+                "eliminated": [
+                  "Ur-Dragon - Pham",
+                  "Chainer"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Zaxara"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Pham",
+              "deck": "Xenagos"
+            },
+            {
+              "player": "June",
+              "deck": "Lonis"
+            }
+          ],
+          "winner": "Xenagos",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Zaxara",
+                "eliminated": [
+                  "Lonis"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Zaxara",
+                "eliminated": [
+                  "Alela, Artful Provocateur"
+                ]
+              },
+              {
+                "eliminator": "Xenagos",
+                "eliminated": [
+                  "Zaxara"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "9/28/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Olivia"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Zaxara"
+            },
+            {
+              "player": "June",
+              "deck": "Yennett"
+            }
+          ],
+          "winner": "Zaxara",
+          "eliminations": {
+            "11": [
+              {
+                "eliminator": "Zaxara",
+                "eliminated": [
+                  "Olivia",
+                  "Yennett"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Trostani"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Olivia"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Zaxara"
+            }
+          ],
+          "winner": "Olivia",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Olivia",
+                "eliminated": [
+                  "Zaxara"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Olivia",
+                "eliminated": [
+                  "Trostani"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Ur-Dragon - Hooper"
+            },
+            {
+              "player": "June",
+              "deck": "Amareth"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Olivia"
+            }
+          ],
+          "winner": "Ur-Dragon - Hooper",
+          "eliminations": {
+            "10": [
+              {
+                "eliminator": "Ur-Dragon - Hooper",
+                "eliminated": [
+                  "Amareth",
+                  "Olivia"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "10/10/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Uro"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            }
+          ],
+          "winner": "Tuvasa",
+          "eliminations": {
+            "5": [
+              {
+                "eliminator": "Tuvasa",
+                "eliminated": [
+                  "Uro"
+                ]
+              }
+            ],
+            "7": [
+              {
+                "eliminator": "Tuvasa",
+                "eliminated": [
+                  "Muldrotha"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Uro"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "June",
+              "deck": "Lonis"
+            }
+          ],
+          "winner": "Uro",
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Uro",
+                "eliminated": [
+                  "Muldrotha",
+                  "Lonis"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "June",
+              "deck": "Azami"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Uro"
+            }
+          ],
+          "winner": "Uro",
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Uro",
+                "eliminated": [
+                  "Muldrotha",
+                  "Azami"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Borborygmos"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kathril"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winner": "Borborygmos",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Borborygmos",
+                "eliminated": [
+                  "Kathril"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Borborygmos",
+                "eliminated": [
+                  "Muldrotha"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "June",
+              "deck": "Teneb"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kathril"
+            }
+          ],
+          "winner": "Muldrotha",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Muldrotha",
+                "eliminated": [
+                  "Kathril"
+                ]
+              }
+            ],
+            "13": [
+              {
+                "eliminator": "Muldrotha",
+                "eliminated": [
+                  "Teneb"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Erinis"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kathril"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Olivia"
+            }
+          ],
+          "winner": "Kathril",
+          "eliminations": {
+            "10": [
+              {
+                "eliminator": "Kathril",
+                "eliminated": [
+                  "Olivia"
+                ]
+              }
+            ],
+            "11": [
+              {
+                "eliminator": "Kathril",
+                "eliminated": [
+                  "Erinis"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "10/19/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Mavinda"
+            },
+            {
+              "player": "June",
+              "deck": "Yidris"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            }
+          ],
+          "winner": "Alela, Artful Provocateur",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Alela, Artful Provocateur",
+                "eliminated": [
+                  "Mavinda",
+                  "Yidris"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Rashmi"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Mavinda"
+            }
+          ],
+          "winner": "Rashmi",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Rashmi",
+                "eliminated": [
+                  "Mavinda"
+                ]
+              }
+            ],
+            "10": [
+              {
+                "eliminator": "Rashmi",
+                "eliminated": [
+                  "Nethroi"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Mavinda"
+            },
+            {
+              "player": "June",
+              "deck": "Inalla"
+            }
+          ],
+          "winner": "Mavinda",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Mavinda",
+                "eliminated": [
+                  "Inalla"
+                ]
+              }
+            ],
+            "10": [
+              {
+                "eliminator": "Mavinda",
+                "eliminated": [
+                  "Nethroi"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Gwyn"
+            }
+          ],
+          "winner": "Tuvasa",
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Tuvasa",
+                "eliminated": [
+                  "Gwyn"
+                ]
+              }
+            ],
+            "7": [
+              {
+                "eliminator": "Tuvasa",
+                "eliminated": [
+                  "Omnath"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "10/26/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Animar"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Magnus"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Uro"
+            }
+          ],
+          "winner": "Animar",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Animar",
+                "eliminated": [
+                  "Uro",
+                  "Magnus"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Yuriko"
+            },
+            {
+              "player": "June",
+              "deck": "Trostani"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Olivia"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Gwyn"
+            }
+          ],
+          "winner": "Trostani",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Trostani",
+                "eliminated": [
+                  "Gwyn"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Trostani",
+                "eliminated": [
+                  "Yuriko",
+                  "Olivia"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Gwyn"
+            },
+            {
+              "player": "Tony",
+              "deck": "Edgar"
+            },
+            {
+              "player": "June",
+              "deck": "Maga"
+            }
+          ],
+          "winner": "Nethroi",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Gwyn",
+                "eliminated": [
+                  "Maga"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Nethroi",
+                "eliminated": [
+                  "Gwyn",
+                  "Edgar"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "11/2/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Ur-Dragon - Hooper"
+            },
+            {
+              "player": "Pham",
+              "deck": "Saruman"
+            },
+            {
+              "player": "Tony",
+              "deck": "Avacyn"
+            }
+          ],
+          "winner": "Avacyn",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Avacyn",
+                "eliminated": [
+                  "Ur-Dragon - Hooper"
+                ]
+              }
+            ],
+            "10": [
+              {
+                "eliminator": "Saruman",
+                "eliminated": [
+                  "Avacyn"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Tony",
+              "deck": "Cormela"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Gwyn"
+            },
+            {
+              "player": "Pham",
+              "deck": "Chatterfang"
+            }
+          ],
+          "winner": "Cormela",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Cormela",
+                "eliminated": [
+                  "Gwyn",
+                  "Chatterfang"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Pham",
+              "deck": "Esika - Pham"
+            },
+            {
+              "player": "Tony",
+              "deck": "Giada"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Jared"
+            }
+          ],
+          "winner": "Giada",
+          "eliminations": {
+            "11": [
+              {
+                "eliminator": "Giada",
+                "eliminated": [
+                  "Esika - Pham"
+                ]
+              }
+            ],
+            "14": [
+              {
+                "eliminator": "Giada",
+                "eliminated": [
+                  "Jared"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "11/09/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Ptoughneigh",
+              "deck": "The Scarab God"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Tahngarth"
+            },
+            {
+              "player": "Pham",
+              "deck": "Saruman"
+            },
+            {
+              "player": "Stormy",
+              "deck": "Angus Mackenzie"
+            }
+          ],
+          "winner": "The Scarab God",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "The Scarab God",
+                "eliminated": [
+                  "Tahngarth",
+                  "Saruman"
+                ]
+              }
+            ],
+            "10": [
+              {
+                "eliminator": "The Scarab God",
+                "eliminated": [
+                  "Angus Mackenzie"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Uro"
+            },
+            {
+              "player": "Pham",
+              "deck": "Sefris"
+            },
+            {
+              "player": "Stormy",
+              "deck": "Alela, Cunning Conqueror"
+            },
+            {
+              "player": "Ptoughneigh",
+              "deck": "The Scarab God"
+            }
+          ],
+          "winner": "Uro",
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Uro",
+                "eliminated": [
+                  "Sefris",
+                  "Alela, Cunning Conqueror",
+                  "The Scarab God"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Pham",
+              "deck": "Xenagos"
+            },
+            {
+              "player": "Stormy",
+              "deck": "Alela, Cunning Conqueror"
+            },
+            {
+              "player": "Ptoughneigh",
+              "deck": "The Scarab God"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kozilek"
+            }
+          ],
+          "winner": "Xenagos",
+          "eliminations": {
+            "5": [
+              {
+                "eliminator": "Xenagos",
+                "eliminated": [
+                  "Alela, Cunning Conqueror",
+                  "The Scarab God",
+                  "Kozilek"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Stormy",
+              "deck": "Angus Mackenzie"
+            },
+            {
+              "player": "Ptoughneigh",
+              "deck": "The Scarab God"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kozilek"
+            },
+            {
+              "player": "Pham",
+              "deck": "Xenagos"
+            }
+          ],
+          "winner": "Kozilek",
+          "eliminations": {
+            "11": [
+              {
+                "eliminator": "Kozilek",
+                "eliminated": [
+                  "Xenagos"
+                ]
+              }
+            ],
+            "14": [
+              {
+                "eliminator": "Kozilek",
+                "eliminated": [
+                  "Angus Mackenzie",
+                  "The Scarab God"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "11/19/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Maridon",
+              "deck": "Galadriel - Precon"
+            },
+            {
+              "player": "Saul",
+              "deck": "Eowyn - Precon"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Hakbal - Precon"
+            }
+          ],
+          "winner": "Hakbal - Precon",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Hakbal - Precon",
+                "eliminated": [
+                  "Galadriel - Precon",
+                  "Eowyn - Precon"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Saul",
+              "deck": "Miirym"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Jared"
+            },
+            {
+              "player": "Maridon",
+              "deck": "Ognis"
+            }
+          ],
+          "winner": "Miirym",
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Miirym",
+                "eliminated": [
+                  "Jared",
+                  "Ognis"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Ruhan"
+            },
+            {
+              "player": "Maridon",
+              "deck": "Zaxara"
+            },
+            {
+              "player": "Saul",
+              "deck": "Miirym"
+            }
+          ],
+          "winner": "Ruhan",
+          "eliminations": {
+            "5": [
+              {
+                "eliminator": "Ruhan",
+                "eliminated": [
+                  "Zaxara",
+                  "Miirym"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
