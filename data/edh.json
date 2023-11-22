@@ -292,7 +292,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Esika - Hooper"
+              "deck": "Esika",
+              "architect": "Hooper"
             }
           ],
           "winner": "Alela, Artful Provocateur"
@@ -395,7 +396,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Esika - Hooper"
+              "deck": "Esika",
+              "architect": "Hooper"
             },
             {
               "player": "Pham",
@@ -406,7 +408,7 @@
               "deck": "Mayael"
             }
           ],
-          "winner": "Esika - Hooper"
+          "winner": "Esika"
         },
         {
           "players": [
@@ -424,7 +426,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Esika - Hooper"
+              "deck": "Esika",
+              "architect": "Hooper"
             }
           ],
           "winner": "Xenagos"
@@ -620,7 +623,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Yidris"
+              "deck": "Yidris",
+              "architect": "June"
             }
           ],
           "winner": "Omnath",
@@ -639,7 +643,8 @@
           "players": [
             {
               "player": "Hooper",
-              "deck": "Yidris"
+              "deck": "Yidris",
+              "architect": "June"
             },
             {
               "player": "Tony",
@@ -688,7 +693,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Yidris"
+              "deck": "Yidris",
+              "architect": "June"
             },
             {
               "player": "Tony",
@@ -724,7 +730,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Yidris"
+              "deck": "Yidris",
+              "architect": "June"
             }
           ],
           "winner": "Sharuum",
@@ -1118,7 +1125,8 @@
             },
             {
               "player": "June",
-              "deck": "Trelasarra"
+              "deck": "Trelasarra",
+              "architect": "Hooper"
             }
           ],
           "winner": "Gwyn",
@@ -1423,7 +1431,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Jabari - Precon"
+              "deck": "Jabari",
+              "architect": "Precon"
             },
             {
               "player": "Pham",
@@ -1457,7 +1466,8 @@
           "players": [
             {
               "player": "Hooper",
-              "deck": "Jabari - Precon"
+              "deck": "Jabari",
+              "architect": "Precon"
             },
             {
               "player": "Pham",
@@ -1504,7 +1514,8 @@
           "players": [
             {
               "player": "Pham",
-              "deck": "Ur-Dragon - Pham"
+              "deck": "Ur-Dragon",
+              "architect": "Pham"
             },
             {
               "player": "Rachael",
@@ -1516,21 +1527,22 @@
             },
             {
               "player": "Hooper",
-              "deck": "Jabari - Precon"
+              "deck": "Jabari",
+              "architect": "Precon"
             }
           ],
-          "winner": "Ur-Dragon - Pham",
+          "winner": "Ur-Dragon",
           "eliminations": {
             "6": [
               {
-                "eliminator": "Ur-Dragon - Pham",
+                "eliminator": "Ur-Dragon",
                 "eliminated": [
-                  "Jabari - Precon",
+                  "Jabari",
                   "Omnath"
                 ]
               },
               {
-                "eliminator": "Ur-Dragon - Pham",
+                "eliminator": "Ur-Dragon",
                 "eliminated": [
                   "Kaervek"
                 ]
@@ -1594,7 +1606,8 @@
           "players": [
             {
               "player": "Pham",
-              "deck": "Ur-Dragon - Pham"
+              "deck": "Ur-Dragon",
+              "architect": "Pham"
             },
             {
               "player": "Tony",
@@ -2238,7 +2251,8 @@
           "players": [
             {
               "player": "Tony",
-              "deck": "Esika - Precon"
+              "deck": "Esika",
+              "architect": "Precon"
             },
             {
               "player": "Hooper",
@@ -2259,7 +2273,7 @@
               {
                 "eliminator": "Yidris",
                 "eliminated": [
-                  "Esika - Precon",
+                  "Esika",
                   "Phage",
                   "Muldrotha"
                 ]
@@ -2331,18 +2345,19 @@
             },
             {
               "player": "Hooper",
-              "deck": "Ur-Dragon - Hooper"
+              "deck": "Ur-Dragon",
+              "architect": "Hooper"
             },
             {
               "player": "June",
               "deck": "Jasmine"
             }
           ],
-          "winner": "Ur-Dragon - Hooper",
+          "winner": "Ur-Dragon",
           "eliminations": {
             "9": [
               {
-                "eliminator": "Ur-Dragon - Hooper",
+                "eliminator": "Ur-Dragon",
                 "eliminated": [
                   "Edgar",
                   "Nethroi"
@@ -2351,7 +2366,7 @@
             ],
             "10": [
               {
-                "eliminator": "Ur-Dragon - Hooper",
+                "eliminator": "Ur-Dragon",
                 "eliminated": [
                   "Jasmine"
                 ]
@@ -2408,7 +2423,8 @@
           "players": [
             {
               "player": "Hooper",
-              "deck": "Ur-Dragon - Hooper"
+              "deck": "Ur-Dragon",
+              "architect": "Hooper"
             },
             {
               "player": "Pham",
@@ -2429,7 +2445,7 @@
               {
                 "eliminator": "Teysa",
                 "eliminated": [
-                  "Ur-Dragon - Hooper"
+                  "Ur-Dragon"
                 ]
               }
             ],
@@ -2452,7 +2468,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Jabari - Precon"
+              "deck": "Jabari",
+              "architect": "Precon"
             },
             {
               "player": "Pham",
@@ -2463,11 +2480,11 @@
               "deck": "Nekusar"
             }
           ],
-          "winner": "Jabari - Precon",
+          "winner": "Jabari",
           "eliminations": {
             "8": [
               {
-                "eliminator": "Jabari - Precon",
+                "eliminator": "Jabari",
                 "eliminated": [
                   "Nekusar"
                 ]
@@ -2475,7 +2492,7 @@
             ],
             "9": [
               {
-                "eliminator": "Jabari - Precon",
+                "eliminator": "Jabari",
                 "eliminated": [
                   "Kroxa",
                   "Gabriel"
@@ -2497,7 +2514,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Ur-Dragon - Hooper"
+              "deck": "Ur-Dragon",
+              "architect": "Hooper"
             },
             {
               "player": "June",
@@ -2511,7 +2529,7 @@
                 "eliminator": "Erinis",
                 "eliminated": [
                   "Nethroi",
-                  "Ur-Dragon - Hooper"
+                  "Ur-Dragon"
                 ]
               }
             ]
@@ -2689,7 +2707,8 @@
             },
             {
               "player": "Hooper",
-              "deck": "Giada"
+              "deck": "Giada",
+              "architect": "Tony"
             },
             {
               "player": "Tony",
@@ -2764,7 +2783,8 @@
           "players": [
             {
               "player": "Pham",
-              "deck": "Ur-Dragon - Pham"
+              "deck": "Ur-Dragon",
+              "architect": "Pham"
             },
             {
               "player": "June",
@@ -2793,7 +2813,7 @@
               {
                 "eliminator": "Borborygmos",
                 "eliminated": [
-                  "Ur-Dragon - Pham",
+                  "Ur-Dragon",
                   "Chainer"
                 ]
               }
@@ -2917,7 +2937,8 @@
           "players": [
             {
               "player": "Hooper",
-              "deck": "Ur-Dragon - Hooper"
+              "deck": "Ur-Dragon",
+              "architect": "Hooper"
             },
             {
               "player": "June",
@@ -2928,11 +2949,11 @@
               "deck": "Olivia"
             }
           ],
-          "winner": "Ur-Dragon - Hooper",
+          "winner": "Ur-Dragon",
           "eliminations": {
             "10": [
               {
-                "eliminator": "Ur-Dragon - Hooper",
+                "eliminator": "Ur-Dragon",
                 "eliminated": [
                   "Amareth",
                   "Olivia"
@@ -3402,7 +3423,8 @@
           "players": [
             {
               "player": "Hooper",
-              "deck": "Ur-Dragon - Hooper"
+              "deck": "Ur-Dragon",
+              "architect": "Hooper"
             },
             {
               "player": "Pham",
@@ -3419,7 +3441,7 @@
               {
                 "eliminator": "Avacyn",
                 "eliminated": [
-                  "Ur-Dragon - Hooper"
+                  "Ur-Dragon"
                 ]
               }
             ],
@@ -3465,7 +3487,8 @@
           "players": [
             {
               "player": "Pham",
-              "deck": "Esika - Pham"
+              "deck": "Esika",
+              "architect": "Pham"
             },
             {
               "player": "Tony",
@@ -3482,7 +3505,7 @@
               {
                 "eliminator": "Giada",
                 "eliminated": [
-                  "Esika - Pham"
+                  "Esika"
                 ]
               }
             ],
@@ -3553,7 +3576,8 @@
             },
             {
               "player": "Stormy",
-              "deck": "Alela, Cunning Conqueror"
+              "deck": "Alela, Cunning Conqueror",
+              "architect": "Stormy"
             },
             {
               "player": "Ptoughneigh",
@@ -3582,7 +3606,8 @@
             },
             {
               "player": "Stormy",
-              "deck": "Alela, Cunning Conqueror"
+              "deck": "Alela, Cunning Conqueror",
+              "architect": "Stormy"
             },
             {
               "player": "Ptoughneigh",
@@ -3656,25 +3681,28 @@
           "players": [
             {
               "player": "Maridon",
-              "deck": "Galadriel - Precon"
+              "deck": "Galadriel",
+              "architect": "Precon"
             },
             {
               "player": "Saul",
-              "deck": "Eowyn - Precon"
+              "deck": "Eowyn",
+              "architect": "Precon"
             },
             {
               "player": "Hooper",
-              "deck": "Hakbal - Precon"
+              "deck": "Hakbal",
+              "architect": "Precon"
             }
           ],
-          "winner": "Hakbal - Precon",
+          "winner": "Hakbal",
           "eliminations": {
             "8": [
               {
-                "eliminator": "Hakbal - Precon",
+                "eliminator": "Hakbal",
                 "eliminated": [
-                  "Galadriel - Precon",
-                  "Eowyn - Precon"
+                  "Galadriel",
+                  "Eowyn"
                 ]
               }
             ]
@@ -3684,15 +3712,18 @@
           "players": [
             {
               "player": "Saul",
-              "deck": "Miirym"
+              "deck": "Miirym",
+              "architect": "Hooper"
             },
             {
               "player": "Hooper",
-              "deck": "Jared"
+              "deck": "Jared",
+              "architect": "Hooper"
             },
             {
               "player": "Maridon",
-              "deck": "Ognis"
+              "deck": "Ognis",
+              "architect": "Hooper"
             }
           ],
           "winner": "Miirym",
@@ -3712,15 +3743,18 @@
           "players": [
             {
               "player": "Hooper",
-              "deck": "Ruhan"
+              "deck": "Ruhan",
+              "architect": "Hooper"
             },
             {
               "player": "Maridon",
-              "deck": "Zaxara"
+              "deck": "Zaxara",
+              "architect": "Hooper"
             },
             {
               "player": "Saul",
-              "deck": "Miirym"
+              "deck": "Miirym",
+              "architect": "Hooper"
             }
           ],
           "winner": "Ruhan",
