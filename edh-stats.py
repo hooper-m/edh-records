@@ -6,6 +6,139 @@ from collections import Counter
 from trueskill import Rating, rate
 
 
+class Deck:
+    def __init__(self, name):
+        self.name = name
+        self.wins = 0
+        self.played = 0
+        self.score = 0
+        self.matchups = {}
+        self.wins_by_turn = Counter()
+        self.eliminations = Counter()
+        self.assists = ''
+        self.games = []
+        self.ranks = {
+            'by_tbs': '',
+            'by_delta': '',
+            'by_wrx1': '',
+            'by_mmr': '',
+            'by_speed': ''
+        }
+        self.rank_delta = {
+            'by_tbs': '',
+            'by_delta': '',
+            'by_wrx1': '',
+            'by_mmr': '',
+            'by_speed': ''
+        }
+
+    def update_game_results(self, game):
+        if self.name == game.winner:
+            self.score += len(game.losers)
+            self.wins += 1
+        else:
+            self.score -= 1
+        self.played += 1
+        self.games.append(game)
+
+    def update_matchups(self, game):
+        if self.name == game.winner:
+            for loser_name in game.losers:
+                if loser_name not in self.matchups:
+                    self.matchups[loser_name] = 0
+                self.matchups[loser_name] += 1
+        else:
+            if game.winner not in self.matchups:
+                self.matchups[game.winner] = 0
+            self.matchups[game.winner] -= 1
+
+    def update_eliminations(self, game):
+        if not game.eliminations:
+            return
+        if self.name == game.winner:
+            turn_won = max(game.eliminations.keys())
+            self.wins_by_turn[turn_won] += 1
+        for t, es in game.eliminations.items():
+            for e in es:
+                if e.eliminator == self.name:
+                    n_elims = len(e.eliminated)
+                    self.eliminations[t] += n_elims
+                    if self.name != game.winner:
+                        if type(self.assists) is not int:
+                            self.assists = 0
+                        self.assists += n_elims
+
+    def update_rank(self, metric, rank):
+        r = self.ranks[metric]
+        if r:
+            delta = r - rank
+            if delta == 0:
+                self.rank_delta[metric] = ''
+            else:
+                self.rank_delta[metric] = ('+' if delta > 0 else '') + str(delta)
+        else:
+            self.rank_delta[metric] = 'New!'
+        self.ranks[metric] = rank
+
+    def calculate_metrics(self, decks, mmr):
+        avg_n_players = statistics.mean(
+            map(lambda game: len(game.decks), self.games)
+        )
+
+        self.winrate = self.wins / self.played
+        self.expected_winrate = 1 / avg_n_players
+        self.winrate_delta = self.winrate - self.expected_winrate
+
+        if self.wins == 0:
+            self.fastest_win = 'n/a'
+            self.avg_win_turn = 'n/a'
+        elif len(self.wins_by_turn) == 0:
+            self.fastest_win = '?'
+            self.avg_win_turn = '?'
+        else:
+            self.fastest_win = min(self.wins_by_turn.keys())
+            self.avg_win_turn = statistics.mean(self.wins_by_turn.elements())
+
+        if len(self.eliminations) == 0:
+            self.n_eliminations = '?'
+            self.avg_elim_turn = '?'
+            self.fastest_elim = '?'
+        else:
+            self.n_eliminations = self.eliminations.total()
+            self.avg_elim_turn = statistics.mean(self.eliminations.elements())
+            self.fastest_elim = min(self.eliminations.keys())
+
+        self.op_wins = sum(map(lambda op: decks[op].wins, self.matchups))
+        self.op_played = sum(map(lambda op: decks[op].played, self.matchups))
+        self.op_winrate = self.op_wins / self.op_played
+
+        self.wrx1 = (self.winrate + 1) * (self.op_winrate + 1)
+        self.mu, self.sigma = mmr[self.name]
+
+
+class Game:
+    def __init__(self, date, playersxdecks, winner):
+        self.date = date
+        self.decks = list(map(lambda pxd: pxd['deck'], playersxdecks))
+        self.winner = winner
+        self.losers = [d for d in self.decks if d != self.winner]
+        self.eliminations = {}
+
+    def append_eliminations(self, eliminations):
+        for t, es in eliminations.items():
+            turn = int(t)
+            elims = []
+            for e in es:
+                elims.append(Elimination(e['eliminator'], e['eliminated']))
+            self.eliminations[turn] = elims
+
+
+class Elimination:
+    def __init__(self, eliminator, eliminated):
+        self.eliminator = eliminator
+        self.eliminated = eliminated
+
+
 def parse_records(filepath):
     decks = {}
     games = {}
@@ -13,32 +146,108 @@ def parse_records(filepath):
         records = json.load(f)
 
     for record in records['games']:
-        date = record['date']
         gs = record['games']
+        date = record['date']
+        games[date] = []
 
         for game in gs:
-            games[date] = {
-                'decks': list(map(lambda pxd: pxd['deck'], game['players'])),
-                'winner': game['winner'],
-                'eliminations': game['eliminations'] if 'eliminations' in game else {}
-            }
+            game_object = Game(date, game['players'], game['winner'])
+            if 'eliminations' in game:
+                game_object.append_eliminations(game['eliminations'])
+            games[date].append(game_object)
 
             for d in game['players']:
                 deck_name = d['deck']
                 if deck_name not in decks:
-                    decks[deck_name] = {
-                        'name': deck_name,
-                        'wins': 0,
-                        'played': 0,
-                        'score': 0,
-                        'matchups': {},
-                        'games': [],
-                        'op_score': 0,
-                        'wins_by_turn': Counter(),
-                        'eliminations': Counter(),
-                        'assists': 0
-                    }
+                    decks[deck_name] = Deck(deck_name)
     return decks, games
+
+
+def update_record_results(decks, games):
+    wins_by_turn_order = {
+        3: Counter(),
+        4: Counter()
+    }
+
+    games_as_list = [(d, gs) for d, gs in games.items()]
+
+    for d, gs in games_as_list[:-1]:
+        for game in gs:
+            if parse_date(d) >= parse_date('2/2/2023'):
+                wins_by_turn_order[len(game.decks)][game.decks.index(game.winner) + 1] += 1
+
+            for deck_name in game.decks:
+                deck = decks[deck_name]
+                deck.update_game_results(game)
+                deck.update_matchups(game)
+                deck.update_eliminations(game)
+
+    last_game = games_as_list[-1]
+    mmr = trueskill(last_game[0])
+
+    s = sorted(filter(lambda d: d.played, decks.values()), key=lambda d: d.name)
+
+    for deck in s:
+        deck.calculate_metrics(decks, mmr)
+
+    _calculate_ranks(decks)
+
+    mmr = trueskill()
+    for game in last_game[1]:
+        wins_by_turn_order[len(game.decks)][game.decks.index(game.winner) + 1] += 1
+
+        for deck_name in game.decks:
+            deck = decks[deck_name]
+            deck.update_game_results(game)
+            deck.update_matchups(game)
+            deck.update_eliminations(game)
+
+    for deck in decks.values():
+        deck.calculate_metrics(decks, mmr)
+
+    _calculate_ranks(decks)
+
+    return wins_by_turn_order
+
+
+def by_speed(d):
+    if type(d.avg_win_turn) is str or type(d.avg_elim_turn) is str:
+        return 100, 100, 100, 100, 100
+
+    return d.avg_win_turn, d.avg_elim_turn, d.fastest_win, d.fastest_elim, -d.winrate
+
+
+def _calculate_ranks(decks):
+    ranked = list(filter(lambda d: d.played > 2, decks.values()))
+
+    for metric, ranking in {
+        'by_tbs': lambda d: (-d.winrate, -d.played, -d.op_winrate),
+        'by_delta': lambda d: (-d.winrate_delta, -d.played, -d.op_winrate),
+        'by_wrx1': lambda d: -d.wrx1,
+        'by_mmr': lambda d: -d.mu,
+        'by_speed': by_speed
+    }.items():
+        for rank, deck in enumerate(sorted(ranked, key=ranking)):
+            deck.update_rank(metric, rank+1)
+
+
+def print_decks(decks, key):
+    header = "name\twins\tplayed\twin %\tex. win %\twin % delta\tfastest win\tavg win turn\teliminations" \
+             "\tfastest elimination\tavg elim turn\tassists\tscore\top win %" \
+             "\twrx1 ((win % + 1) x (op win % + 1))\tmmr\tsigma\tBy tiebreaks (win %, played, op win %)" \
+             "\tΔ\tBy tiebreaks (win % delta, played, op win %)\tΔ\tBy wrx1\tΔ\tBy mmr\tΔ\tBy speed\tΔ"
+    print(header)
+    for deck in sorted(decks.values(), key=key):
+
+        print(deck.name, deck.wins, deck.played, deck.winrate, deck.expected_winrate, deck.winrate_delta,
+              deck.fastest_win, deck.avg_win_turn, deck.n_eliminations, deck.fastest_elim, deck.avg_elim_turn,
+              deck.assists, deck.score, deck.op_winrate, deck.wrx1, deck.mu, deck.sigma,
+              deck.ranks['by_tbs'], deck.rank_delta['by_tbs'],
+              deck.ranks['by_delta'], deck.rank_delta['by_delta'],
+              deck.ranks['by_wrx1'], deck.rank_delta['by_wrx1'],
+              deck.ranks['by_mmr'], deck.rank_delta['by_mmr'],
+              deck.ranks['by_speed'], deck.rank_delta['by_speed'],
+              sep='\t')
 
 
 def foo(d):
@@ -152,7 +361,7 @@ def foo(d):
     return decks, diffs, wins_by_turn_order
 
 
-def trueskill():
+def trueskill(date=None):
     with open('./data/edh.json', 'r',) as f:
         record = json.load(f)
     gs = record['games']
@@ -161,6 +370,8 @@ def trueskill():
     ratings_by_deck_r = {}
 
     for g in gs:
+        if date and parse_date(g['date']) >= parse_date(date):
+            continue
         for game in g['games']:
             winner = game['winner']
             decks = [p['deck'] for p in game['players']]
@@ -206,6 +417,7 @@ def trueskill():
         in zip(sorted(ratings_by_deck.items(), key=alphabetical),
                sorted(ratings_by_deck_r.items(), key=alphabetical))
     }
+
 
 def print_wins(wins):
     for p in [3, 4]:
@@ -396,19 +608,24 @@ def parse_date(d):
 
 def main():
     by_score = lambda d: -d['score']
-    alphabetical = lambda d: d['name']
+    alphabetical = lambda d: d.name
 
     record_filepath = './data/edh.json'
 
     date = "4/19/2999"
     decks, games = parse_records(record_filepath)
-    decks, diffs, wins = foo(date)
-    opponents_wins_losses(decks)
-    trueskill_ratings = trueskill()
-    calculate_scores(decks, trueskill_ratings)
-    calculate_ranks(decks)
-    print_scores(decks, key=alphabetical)
+    wins = update_record_results(decks, games)
+    print_decks(decks, key=alphabetical)
     print_wins(wins)
+
+    # decks, diffs, wins = foo(date)
+    # opponents_wins_losses(decks)
+    # trueskill_ratings = trueskill()
+    # calculate_scores(decks, trueskill_ratings)
+    # calculate_ranks(decks)
+    # print_scores(decks, key=alphabetical)
+    # print_wins(wins)
+
     # print()
     # print_graph(decks)
     # print()
