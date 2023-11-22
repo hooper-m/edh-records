@@ -7,8 +7,10 @@ from trueskill import Rating, rate
 
 
 class Deck:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name, architect):
+        self.name = name + ' - ' + architect
+        self.simple_name = name
+        self.architect = architect
         self.wins = 0
         self.played = 0
         self.score = 0
@@ -157,20 +159,24 @@ class Deck:
 
 
 class Game:
-    def __init__(self, date, playersxdecks, winner):
+    def __init__(self, date, archidecks, winner):
         self.date = date
-        self.decks = list(map(lambda pxd: pxd['deck'], playersxdecks))
+        self.decks = archidecks
         self.winner = winner
         self.losers = [d for d in self.decks if d != self.winner]
         self.eliminations = {}
 
-    def append_eliminations(self, eliminations):
-        for t, es in eliminations.items():
-            turn = int(t)
-            elims = []
-            for e in es:
-                elims.append(Elimination(e['eliminator'], e['eliminated']))
-            self.eliminations[turn] = elims
+    def append_eliminations(self, eliminations, archideck_names):
+        self.eliminations |= {
+            int(t): [
+                Elimination(
+                    archideck_names[e['eliminator']],
+                    list(map(lambda l: archideck_names[l], e['eliminated']))
+                )
+                for e in es
+            ]
+            for t, es in eliminations.items()
+        }
 
 
 class Elimination:
@@ -185,6 +191,8 @@ def parse_records(filepath):
     with open(filepath, 'r') as f:
         records = json.load(f)
 
+    valid_players_keys = {'player', 'deck', 'architect'}
+
     for record in records['games']:
         gs = record['games']
         date = record['date']
@@ -192,32 +200,45 @@ def parse_records(filepath):
 
         for game in gs:
             players = game['players']
-            deck_names = list(map(lambda pxd: pxd['deck'], players))
             winner = game['winner']
+            simple_deck_names = list(map(lambda pxd: pxd['deck'], players))
+            archideck_names = {}
 
-            if winner not in deck_names:
+            if winner not in simple_deck_names:
                 raise Exception(f'winner {winner} not found in game dated {date}')
 
-            game_object = Game(date, players, winner)
+            for p in players:
+                for key in p:
+                    if key not in valid_players_keys:
+                        raise Exception(f'invalid key {key} found in game dated {date}')
+                player_name = p['player']
+                simple_deck_name = p['deck']
+                architect = player_name if 'architect' not in p else p['architect']
+                archideck_name = simple_deck_name + ' - ' + architect
+                archideck_names[simple_deck_name] = archideck_name
+                if archideck_name not in decks:
+                    decks[archideck_name] = Deck(simple_deck_name, architect)
+
+            game_object = Game(
+                date,
+                list(map(lambda sdn: archideck_names[sdn], simple_deck_names)),
+                archideck_names[winner],
+            )
             if 'eliminations' in game:
                 eliminations = game['eliminations']
-                game_object.append_eliminations(eliminations)
+                game_object.append_eliminations(eliminations, archideck_names)
 
                 for t, es in eliminations.items():
                     for e in es:
                         eliminator = e['eliminator']
-                        if eliminator not in deck_names:
+                        if eliminator not in simple_deck_names:
                             raise Exception(f'eliminator {eliminator} not found in game dated {date}')
                         eliminated = e['eliminated']
                         for loser in eliminated:
-                            if loser not in deck_names:
+                            if loser not in simple_deck_names:
                                 raise Exception(f'loser {loser} not found in game dated {date}')
 
             games[date].append(game_object)
-
-            for deck_name in deck_names:
-                if deck_name not in decks:
-                    decks[deck_name] = Deck(deck_name)
     return decks, games
 
 
@@ -307,7 +328,7 @@ def _calculate_ranks(decks):
 
 def print_decks(decks, key):
     def print_deck(d):
-        print(d.name, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
+        print(d.simple_name, d.architect, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
               d.get_fastest_win(), d.get_avg_win_turn(), d.get_n_eliminations(), d.get_fastest_elim(),
               d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate, d.wrx1, d.mu, d.sigma,
               d.ranks['by_mmr'], d.rank_delta['by_mmr'],
@@ -318,7 +339,7 @@ def print_decks(decks, key):
               sep='\t'
               )
 
-    header = "name\twins\tplayed\twin %\tex. win %\twin % delta\tfastest win\tavg win turn\teliminations" \
+    header = "name\tplayer\twins\tplayed\twin %\tex. win %\twin % delta\tfastest win\tavg win turn\teliminations" \
              "\tfastest elimination\tavg elim turn\tassists\tscore\top win %" \
              "\twrx1 ((win % + 1) x (op win % + 1))\tmmr\tsigma" \
              "\tBy mmr\tΔ" \
@@ -464,9 +485,13 @@ def trueskill(date=None):
         if date and parse_date(g['date']) >= parse_date(date):
             continue
         for game in g['games']:
-            winner = game['winner']
-            decks = [p['deck'] for p in game['players']]
-            losers = [d for d in decks if d != winner]
+            archideck_names = {
+                p['deck']: p['deck'] + ' - ' + (p['player'] if 'architect' not in p else p['architect'])
+                for p in game['players']
+            }
+            winner = archideck_names[game['winner']]
+            decks = list(map(lambda p: archideck_names[p['deck']], game['players']))
+            losers = list(filter(lambda d: d != winner, decks))
 
             for d in decks:
                 if d not in ratings_by_deck:

@@ -1157,7 +1157,8 @@
             },
             {
               "player": "June",
-              "deck": "Trelasarra"
+              "deck": "Trelasarra",
+              "architect": "Hooper"
             },
             {
               "player": "Hooper",
@@ -2387,7 +2388,8 @@
             },
             {
               "player": "Jason",
-              "deck": "Kaalia"
+              "deck": "Kaalia",
+              "architect": "Tony"
             },
             {
               "player": "Tony",
@@ -2432,7 +2434,8 @@
             },
             {
               "player": "Jason",
-              "deck": "Teysa"
+              "deck": "Teysa",
+              "architect": "Tony"
             },
             {
               "player": "Tony",
