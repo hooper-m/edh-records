@@ -179,6 +179,7 @@ class Game:
         }
 
 
+
 class Elimination:
     def __init__(self, eliminator, eliminated):
         self.eliminator = eliminator
