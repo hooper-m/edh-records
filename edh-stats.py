@@ -15,7 +15,7 @@ class Deck:
         self.matchups = {}
         self.wins_by_turn = Counter()
         self.eliminations = Counter()
-        self.assists = ''
+        self._assists = 0
         self.games = []
         self.ranks = {
             'by_tbs': '',
@@ -31,6 +31,56 @@ class Deck:
             'by_mmr': '',
             'by_speed': ''
         }
+        self.winrate = None
+        self.expected_winrate = None
+        self.winrate_delta = None
+        self.op_winrate = None
+        self.wrx1 = None
+        self.mu = None
+        self.sigma = None
+
+        self._avg_win_turn = 100
+        self._fastest_win = 100
+        self._n_eliminations = 100
+        self._avg_elim_turn = 100
+        self._fastest_elim = 100
+
+    def get_assists(self):
+        return self._assists or ''
+
+    def get_avg_win_turn(self):
+        if self.wins == 0:
+            return 'n/a'
+        elif len(self.wins_by_turn) == 0:
+            return '?'
+        else:
+            return self._avg_win_turn
+
+    def get_fastest_win(self):
+        if self.wins == 0:
+            return 'n/a'
+        elif len(self.wins_by_turn) == 0:
+            return '?'
+        else:
+            return self._fastest_win
+
+    def get_n_eliminations(self):
+        if len(self.eliminations) == 0:
+            return '?'
+        else:
+            return self._n_eliminations
+
+    def get_avg_elim_turn(self):
+        if len(self.eliminations) == 0:
+            return '?'
+        else:
+            return self._avg_elim_turn
+
+    def get_fastest_elim(self):
+        if len(self.eliminations) == 0:
+            return '?'
+        else:
+            return self._fastest_elim
 
     def update_game_results(self, game):
         if self.name == game.winner:
@@ -64,9 +114,7 @@ class Deck:
                     n_elims = len(e.eliminated)
                     self.eliminations[t] += n_elims
                     if self.name != game.winner:
-                        if type(self.assists) is not int:
-                            self.assists = 0
-                        self.assists += n_elims
+                        self._assists += n_elims
 
     def update_rank(self, metric, rank):
         r = self.ranks[metric]
@@ -84,33 +132,22 @@ class Deck:
         avg_n_players = statistics.mean(
             map(lambda game: len(game.decks), self.games)
         )
-
         self.winrate = self.wins / self.played
         self.expected_winrate = 1 / avg_n_players
         self.winrate_delta = self.winrate - self.expected_winrate
 
-        if self.wins == 0:
-            self.fastest_win = 'n/a'
-            self.avg_win_turn = 'n/a'
-        elif len(self.wins_by_turn) == 0:
-            self.fastest_win = '?'
-            self.avg_win_turn = '?'
-        else:
-            self.fastest_win = min(self.wins_by_turn.keys())
-            self.avg_win_turn = statistics.mean(self.wins_by_turn.elements())
+        if len(self.wins_by_turn):
+            self._avg_win_turn = statistics.mean(self.wins_by_turn.elements())
+            self._fastest_win = min(self.wins_by_turn.keys())
 
-        if len(self.eliminations) == 0:
-            self.n_eliminations = '?'
-            self.avg_elim_turn = '?'
-            self.fastest_elim = '?'
-        else:
-            self.n_eliminations = self.eliminations.total()
-            self.avg_elim_turn = statistics.mean(self.eliminations.elements())
-            self.fastest_elim = min(self.eliminations.keys())
+        if len(self.eliminations):
+            self._n_eliminations = self.eliminations.total()
+            self._avg_elim_turn = statistics.mean(self.eliminations.elements())
+            self._fastest_elim = min(self.eliminations.keys())
 
-        self.op_wins = sum(map(lambda op: decks[op].wins, self.matchups))
-        self.op_played = sum(map(lambda op: decks[op].played, self.matchups))
-        self.op_winrate = self.op_wins / self.op_played
+        op_wins = sum(map(lambda op: decks[op].wins, self.matchups))
+        op_played = sum(map(lambda op: decks[op].played, self.matchups))
+        self.op_winrate = op_wins / op_played
 
         self.wrx1 = (self.winrate + 1) * (self.op_winrate + 1)
         self.mu, self.sigma = mmr[self.name]
@@ -211,21 +248,37 @@ def update_record_results(decks, games):
 
 
 def by_speed(d):
-    if type(d.avg_win_turn) is str or type(d.avg_elim_turn) is str:
+    if type(d.get_avg_win_turn()) is str or type(d.get_avg_elim_turn()) is str:
         return 100, 100, 100, 100, 100
 
-    return d.avg_win_turn, d.avg_elim_turn, d.fastest_win, d.fastest_elim, -d.winrate
+    return d.get_avg_win_turn(), d.get_avg_elim_turn(), d.get_fastest_win(), d.get_fastest_elim(), -d.winrate
 
 
 def _calculate_ranks(decks):
     ranked = list(filter(lambda d: d.played > 2, decks.values()))
 
     for metric, ranking in {
-        'by_tbs': lambda d: (-d.winrate, -d.played, -d.op_winrate),
-        'by_delta': lambda d: (-d.winrate_delta, -d.played, -d.op_winrate),
+        'by_tbs': lambda d: (
+                -d.winrate,
+                -d.played,
+                -d.op_winrate
+        ),
+        'by_delta': lambda d: (
+                -d.winrate_delta,
+                -d.played,
+                -d.op_winrate
+        ),
         'by_wrx1': lambda d: -d.wrx1,
         'by_mmr': lambda d: -d.mu,
-        'by_speed': by_speed
+        'by_speed': lambda d: (
+                d._avg_win_turn,
+                d._avg_elim_turn,
+                d._fastest_win,
+                d._fastest_elim,
+                -d.winrate,
+                -d._n_eliminations,
+                -d.mu
+        )
     }.items():
         for rank, deck in enumerate(sorted(ranked, key=ranking)):
             deck.update_rank(metric, rank+1)
@@ -238,16 +291,16 @@ def print_decks(decks, key):
              "\tΔ\tBy tiebreaks (win % delta, played, op win %)\tΔ\tBy wrx1\tΔ\tBy mmr\tΔ\tBy speed\tΔ"
     print(header)
     for deck in sorted(decks.values(), key=key):
-
         print(deck.name, deck.wins, deck.played, deck.winrate, deck.expected_winrate, deck.winrate_delta,
-              deck.fastest_win, deck.avg_win_turn, deck.n_eliminations, deck.fastest_elim, deck.avg_elim_turn,
-              deck.assists, deck.score, deck.op_winrate, deck.wrx1, deck.mu, deck.sigma,
+              deck.get_fastest_win(), deck.get_avg_win_turn(), deck.get_n_eliminations(), deck.get_fastest_elim(),
+              deck.get_avg_elim_turn(), deck.get_assists(), deck.score, deck.op_winrate, deck.wrx1, deck.mu, deck.sigma,
               deck.ranks['by_tbs'], deck.rank_delta['by_tbs'],
               deck.ranks['by_delta'], deck.rank_delta['by_delta'],
               deck.ranks['by_wrx1'], deck.rank_delta['by_wrx1'],
               deck.ranks['by_mmr'], deck.rank_delta['by_mmr'],
               deck.ranks['by_speed'], deck.rank_delta['by_speed'],
-              sep='\t')
+              sep='\t'
+              )
 
 
 def foo(d):
