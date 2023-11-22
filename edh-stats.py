@@ -191,13 +191,31 @@ def parse_records(filepath):
         games[date] = []
 
         for game in gs:
-            game_object = Game(date, game['players'], game['winner'])
+            players = game['players']
+            deck_names = list(map(lambda pxd: pxd['deck'], players))
+            winner = game['winner']
+
+            if winner not in deck_names:
+                raise Exception(f'winner {winner} not found in game dated {date}')
+
+            game_object = Game(date, players, winner)
             if 'eliminations' in game:
-                game_object.append_eliminations(game['eliminations'])
+                eliminations = game['eliminations']
+                game_object.append_eliminations(eliminations)
+
+                for t, es in eliminations.items():
+                    for e in es:
+                        eliminator = e['eliminator']
+                        if eliminator not in deck_names:
+                            raise Exception(f'eliminator {eliminator} not found in game dated {date}')
+                        eliminated = e['eliminated']
+                        for loser in eliminated:
+                            if loser not in deck_names:
+                                raise Exception(f'loser {loser} not found in game dated {date}')
+
             games[date].append(game_object)
 
-            for d in game['players']:
-                deck_name = d['deck']
+            for deck_name in deck_names:
                 if deck_name not in decks:
                     decks[deck_name] = Deck(deck_name)
     return decks, games
