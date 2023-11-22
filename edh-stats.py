@@ -292,18 +292,22 @@ def print_decks(decks, key):
         print(d.name, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
               d.get_fastest_win(), d.get_avg_win_turn(), d.get_n_eliminations(), d.get_fastest_elim(),
               d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate, d.wrx1, d.mu, d.sigma,
-              d.ranks['by_tbs'], d.rank_delta['by_tbs'],
-              d.ranks['by_delta'], d.rank_delta['by_delta'],
-              d.ranks['by_wrx1'], d.rank_delta['by_wrx1'],
               d.ranks['by_mmr'], d.rank_delta['by_mmr'],
+              d.ranks['by_delta'], d.rank_delta['by_delta'],
+              d.ranks['by_tbs'], d.rank_delta['by_tbs'],
+              d.ranks['by_wrx1'], d.rank_delta['by_wrx1'],
               d.ranks['by_speed'], d.rank_delta['by_speed'],
               sep='\t'
               )
 
     header = "name\twins\tplayed\twin %\tex. win %\twin % delta\tfastest win\tavg win turn\teliminations" \
              "\tfastest elimination\tavg elim turn\tassists\tscore\top win %" \
-             "\twrx1 ((win % + 1) x (op win % + 1))\tmmr\tsigma\tBy tiebreaks (win %, played, op win %)" \
-             "\tΔ\tBy tiebreaks (win % delta, played, op win %)\tΔ\tBy wrx1\tΔ\tBy mmr\tΔ\tBy speed\tΔ"
+             "\twrx1 ((win % + 1) x (op win % + 1))\tmmr\tsigma" \
+             "\tBy mmr\tΔ" \
+             "\tBy tiebreaks (win % delta, played, op win %)\tΔ" \
+             "\tBy tiebreaks (win %, played, op win %)\tΔ" \
+             "\tBy wrx1\tΔ" \
+             "\tBy speed\tΔ"
     print(header)
 
     ranked, unranked = partition(lambda dck: dck.is_ranked(), sorted(decks.values(), key=key))
