@@ -45,6 +45,9 @@ class Deck:
         self._avg_elim_turn = 100
         self._fastest_elim = 100
 
+    def is_ranked(self):
+        return self.played > 2
+
     def get_assists(self):
         return self._assists or ''
 
@@ -255,7 +258,7 @@ def by_speed(d):
 
 
 def _calculate_ranks(decks):
-    ranked = list(filter(lambda d: d.played > 2, decks.values()))
+    ranked = list(filter(lambda d: d.is_ranked(), decks.values()))
 
     for metric, ranking in {
         'by_tbs': lambda d: (
@@ -285,22 +288,35 @@ def _calculate_ranks(decks):
 
 
 def print_decks(decks, key):
+    def print_deck(d):
+        print(d.name, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
+              d.get_fastest_win(), d.get_avg_win_turn(), d.get_n_eliminations(), d.get_fastest_elim(),
+              d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate, d.wrx1, d.mu, d.sigma,
+              d.ranks['by_tbs'], d.rank_delta['by_tbs'],
+              d.ranks['by_delta'], d.rank_delta['by_delta'],
+              d.ranks['by_wrx1'], d.rank_delta['by_wrx1'],
+              d.ranks['by_mmr'], d.rank_delta['by_mmr'],
+              d.ranks['by_speed'], d.rank_delta['by_speed'],
+              sep='\t'
+              )
+
     header = "name\twins\tplayed\twin %\tex. win %\twin % delta\tfastest win\tavg win turn\teliminations" \
              "\tfastest elimination\tavg elim turn\tassists\tscore\top win %" \
              "\twrx1 ((win % + 1) x (op win % + 1))\tmmr\tsigma\tBy tiebreaks (win %, played, op win %)" \
              "\tΔ\tBy tiebreaks (win % delta, played, op win %)\tΔ\tBy wrx1\tΔ\tBy mmr\tΔ\tBy speed\tΔ"
     print(header)
-    for deck in sorted(decks.values(), key=key):
-        print(deck.name, deck.wins, deck.played, deck.winrate, deck.expected_winrate, deck.winrate_delta,
-              deck.get_fastest_win(), deck.get_avg_win_turn(), deck.get_n_eliminations(), deck.get_fastest_elim(),
-              deck.get_avg_elim_turn(), deck.get_assists(), deck.score, deck.op_winrate, deck.wrx1, deck.mu, deck.sigma,
-              deck.ranks['by_tbs'], deck.rank_delta['by_tbs'],
-              deck.ranks['by_delta'], deck.rank_delta['by_delta'],
-              deck.ranks['by_wrx1'], deck.rank_delta['by_wrx1'],
-              deck.ranks['by_mmr'], deck.rank_delta['by_mmr'],
-              deck.ranks['by_speed'], deck.rank_delta['by_speed'],
-              sep='\t'
-              )
+
+    ranked, unranked = partition(lambda dck: dck.is_ranked(), sorted(decks.values(), key=key))
+
+    for deck in ranked:
+        print_deck(deck)
+
+    print()
+
+    for deck in unranked:
+        print_deck(deck)
+
+    print()
 
 
 def foo(d):
@@ -657,6 +673,10 @@ def opponents_wins_losses(decks):
 def parse_date(d):
     m, d, y = [int(x) for x in d.split('/')]
     return datetime.date(y, m, d)
+
+
+def partition(function, iterable):
+    return filter(function, iterable), filter(lambda x: not function(x), iterable)
 
 
 def main():
