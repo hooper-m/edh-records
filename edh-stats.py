@@ -237,6 +237,8 @@ def parse_records(filepath):
                         for loser in eliminated:
                             if loser not in simple_deck_names:
                                 raise Exception(f'loser {loser} not found in game dated {date}')
+                            if loser == winner:
+                                raise Exception(f'winner {winner} elimininated in game dated {date}')
 
             games[date].append(game_object)
     return decks, games
