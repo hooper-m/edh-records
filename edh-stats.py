@@ -110,16 +110,17 @@ class Deck:
     def update_eliminations(self, game):
         if not game.eliminations:
             return
+
+        elims_by_turn = game.elims_by_deck[self.name]
+
         if self.name == game.winner:
-            turn_won = max(game.eliminations.keys())
+            turn_won = max(elims_by_turn.keys())
             self.wins_by_turn[turn_won] += 1
-        for t, es in game.eliminations.items():
-            for e in es:
-                if e.eliminator == self.name:
-                    n_elims = len(e.eliminated)
-                    self.eliminations[t] += n_elims
-                    if self.name != game.winner:
-                        self._assists += n_elims
+        for turn, losers in elims_by_turn.items():
+            n_elims = len(losers)
+            self.eliminations[turn] += n_elims
+            if self.name != game.winner:
+                self._assists += n_elims
 
     def update_rank(self, metric, rank):
         r = self.ranks[metric]
@@ -165,6 +166,7 @@ class Game:
         self.winner = winner
         self.losers = [d for d in self.decks if d != self.winner]
         self.eliminations = {}
+        self.elims_by_deck = {}
 
     def append_eliminations(self, eliminations, archideck_names):
         self.eliminations |= {
@@ -178,6 +180,17 @@ class Game:
             for t, es in eliminations.items()
         }
 
+        self.elims_by_deck = {
+            deck_name: {}
+            for deck_name in archideck_names.values()
+        }
+
+        for t, es in eliminations.items():
+            turn = int(t)
+            for e in es:
+                eliminator = archideck_names[e['eliminator']]
+                eliminated = list(map(lambda l: archideck_names[l], e['eliminated']))
+                self.elims_by_deck[eliminator][turn] = eliminated
 
 
 class Elimination:
