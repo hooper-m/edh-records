@@ -17,6 +17,7 @@ class Deck:
         self.matchups = {}
         self.wins_by_turn = Counter()
         self.eliminations = Counter()
+        self.mmr = Rating()
         self._assists = 0
         self.games = []
         self.ranks = {
@@ -174,6 +175,10 @@ class Game:
         self.winner = winner
         self.losers = [d for d in self.decks if d != self.winner]
         self.elims_by_deck = None
+        self._rankings = [
+            [winner],
+            self.losers
+        ]
 
         if not eliminations:
             return
@@ -183,12 +188,41 @@ class Game:
             for deck_name in archideck_names.values()
         }
 
+        assists_by_deck = Counter({
+            deck: 0
+            for deck in decks_by_turn_order
+            if deck != winner
+        })
+
         for t, es in eliminations.items():
             turn = int(t)
             for e in es:
                 eliminator = archideck_names[e['eliminator']]
                 eliminated = list(map(lambda l: archideck_names[l], e['eliminated']))
                 self.elims_by_deck[eliminator][turn] = eliminated
+                if eliminator != winner:
+                    assists_by_deck[eliminator] += len(eliminated)
+
+        if not assists_by_deck.total():
+            return
+
+        self._rankings = [[winner]]
+
+        decks_by_assists = [[], [], []]
+        for deck, assists in assists_by_deck.items():
+            decks_by_assists[assists].append(deck)
+        for decks in reversed(decks_by_assists):
+            if len(decks):
+                self._rankings.append(sorted(decks, key=lambda d: decks_by_turn_order.index(d)))
+
+    def get_rankings(self):
+        decks = []
+        rankings = []
+        for r, ds in enumerate(self._rankings):
+            for d in ds:
+                decks.append(d)
+                rankings.append(r)
+        return decks, rankings
 
 
 def parse_records(filepath):
@@ -279,6 +313,12 @@ def update_record_results(decks, games):
                 deck.update_matchups(game)
                 deck.update_eliminations(game)
 
+            deck_names, game_rankings = game.get_rankings()
+            deck_ratings = [(decks[d].mmr,) for d in deck_names]
+            new_ratings = rate(deck_ratings, ranks=game_rankings)
+            for idx, (rating,) in enumerate(new_ratings):
+                decks[deck_names[idx]].mmr = rating
+
     last_game = games_as_list[-1]
     mmr = trueskill(last_game[0])
 
@@ -298,6 +338,12 @@ def update_record_results(decks, games):
             deck.update_game_results(game)
             deck.update_matchups(game)
             deck.update_eliminations(game)
+
+        deck_names, game_rankings = game.get_rankings()
+        deck_ratings = [(decks[d].mmr,) for d in deck_names]
+        new_ratings = rate(deck_ratings, ranks=game_rankings)
+        for idx, (rating,) in enumerate(new_ratings):
+            decks[deck_names[idx]].mmr = rating
 
     for deck in decks.values():
         deck.calculate_metrics(decks, mmr)
@@ -509,7 +555,7 @@ def trueskill(date=None):
             }
             winner = archideck_names[game['winner']]
             decks = list(map(lambda p: archideck_names[p['deck']], game['players']))
-            losers = list(filter(lambda d: d != winner, decks))
+            losers = list(filter(lambda dck: dck != winner, decks))
 
             for d in decks:
                 if d not in ratings_by_deck:
