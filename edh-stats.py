@@ -108,7 +108,7 @@ class Deck:
             self.matchups[game.winner] -= 1
 
     def update_eliminations(self, game):
-        if not game.eliminations:
+        if not game.elims_by_deck:
             return
 
         elims_by_turn = game.elims_by_deck[self.name]
@@ -160,25 +160,15 @@ class Deck:
 
 
 class Game:
-    def __init__(self, date, archidecks, winner):
+    def __init__(self, date, decks_by_turn_order, winner, archideck_names, eliminations):
         self.date = date
-        self.decks = archidecks
+        self.decks = decks_by_turn_order
         self.winner = winner
         self.losers = [d for d in self.decks if d != self.winner]
-        self.eliminations = {}
-        self.elims_by_deck = {}
+        self.elims_by_deck = None
 
-    def append_eliminations(self, eliminations, archideck_names):
-        self.eliminations |= {
-            int(t): [
-                Elimination(
-                    archideck_names[e['eliminator']],
-                    list(map(lambda l: archideck_names[l], e['eliminated']))
-                )
-                for e in es
-            ]
-            for t, es in eliminations.items()
-        }
+        if not eliminations:
+            return
 
         self.elims_by_deck = {
             deck_name: {}
@@ -191,12 +181,6 @@ class Game:
                 eliminator = archideck_names[e['eliminator']]
                 eliminated = list(map(lambda l: archideck_names[l], e['eliminated']))
                 self.elims_by_deck[eliminator][turn] = eliminated
-
-
-class Elimination:
-    def __init__(self, eliminator, eliminated):
-        self.eliminator = eliminator
-        self.eliminated = eliminated
 
 
 def parse_records(filepath):
@@ -240,14 +224,10 @@ def parse_records(filepath):
                 if archideck_name not in decks:
                     decks[archideck_name] = Deck(simple_deck_name, architect)
 
-            game_object = Game(
-                date,
-                list(map(lambda sdn: archideck_names[sdn], simple_deck_names)),
-                archideck_names[winner],
-            )
+            eliminations = {}
+
             if 'eliminations' in game:
                 eliminations = game['eliminations']
-                game_object.append_eliminations(eliminations, archideck_names)
 
                 for t, es in eliminations.items():
                     for e in es:
@@ -259,8 +239,15 @@ def parse_records(filepath):
                             if loser not in simple_deck_names:
                                 raise Exception(f'loser {loser} not found in game dated {date}')
                             if loser == winner:
-                                raise Exception(f'winner {winner} elimininated in game dated {date}')
+                                raise Exception(f'winner {winner} eliminated in game dated {date}')
 
+            game_object = Game(
+                date,
+                list(map(lambda sdn: archideck_names[sdn], simple_deck_names)),
+                archideck_names[winner],
+                archideck_names,
+                eliminations
+            )
             games[date].append(game_object)
     return decks, games
 
