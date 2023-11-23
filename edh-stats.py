@@ -89,7 +89,14 @@ class Deck:
 
     def update_game_results(self, game):
         if self.name == game.winner:
-            self.score += len(game.losers)
+            if game.elims_by_deck:
+                points = sum(map(
+                    len,
+                    game.elims_by_deck[self.name].values()
+                ))
+            else:
+                points = len(game.losers)
+            self.score += points
             self.wins += 1
         else:
             self.score -= 1
@@ -121,6 +128,7 @@ class Deck:
             self.eliminations[turn] += n_elims
             if self.name != game.winner:
                 self._assists += n_elims
+                self.score += n_elims
 
     def update_rank(self, metric, rank):
         r = self.ranks[metric]
