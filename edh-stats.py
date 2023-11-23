@@ -213,7 +213,14 @@ def parse_records(filepath):
                         raise Exception(f'invalid key {key} found in game dated {date}')
                 player_name = p['player']
                 simple_deck_name = p['deck']
-                architect = player_name if 'architect' not in p else p['architect']
+
+                if 'architect' in p:
+                    architect = p['architect']
+                    if architect == player_name:
+                        raise Exception(f'player {player_name} and architect match in game dated {date}')
+                else:
+                    architect = player_name
+
                 archideck_name = simple_deck_name + ' - ' + architect
                 archideck_names[simple_deck_name] = archideck_name
                 if archideck_name not in decks:
