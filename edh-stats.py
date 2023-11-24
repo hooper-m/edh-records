@@ -143,7 +143,7 @@ class Deck:
             self.rank_delta[metric] = 'New!'
         self.ranks[metric] = rank
 
-    def calculate_metrics(self, decks, mmr):
+    def calculate_metrics(self, decks):
         avg_n_players = statistics.mean(
             map(lambda game: len(game.decks), self.games)
         )
@@ -165,7 +165,7 @@ class Deck:
         self.op_winrate = op_wins / op_played
 
         self.wrx1 = (self.winrate + 1) * (self.op_winrate + 1)
-        self.mu, self.sigma = mmr[self.name]
+        # self.mu, self.sigma = mmr[self.name]
 
 
 class Game:
@@ -313,23 +313,25 @@ def update_record_results(decks, games):
                 deck.update_matchups(game)
                 deck.update_eliminations(game)
 
-            deck_names, game_rankings = game.get_rankings()
+            # deck_names, game_rankings = game.get_rankings()
+            deck_names, _ = game.get_rankings()
+            game_rankings = [0] + ([1] * len(game.losers))
             deck_ratings = [(decks[d].mmr,) for d in deck_names]
             new_ratings = rate(deck_ratings, ranks=game_rankings)
             for idx, (rating,) in enumerate(new_ratings):
-                decks[deck_names[idx]].mmr = rating
+                dd = deck_names[idx]
+                ddd = decks[dd]
+                ddd.mmr = rating
 
     last_game = games_as_list[-1]
-    mmr = trueskill(last_game[0])
 
     s = sorted(filter(lambda d: d.played, decks.values()), key=lambda d: d.name)
 
     for deck in s:
-        deck.calculate_metrics(decks, mmr)
+        deck.calculate_metrics(decks)
 
     _calculate_ranks(decks)
 
-    mmr = trueskill()
     for game in last_game[1]:
         wins_by_turn_order[len(game.decks)][game.decks.index(game.winner) + 1] += 1
 
@@ -346,7 +348,7 @@ def update_record_results(decks, games):
             decks[deck_names[idx]].mmr = rating
 
     for deck in decks.values():
-        deck.calculate_metrics(decks, mmr)
+        deck.calculate_metrics(decks)
 
     _calculate_ranks(decks)
 
@@ -375,7 +377,9 @@ def _calculate_ranks(decks):
                 -d.op_winrate
         ),
         'by_wrx1': lambda d: -d.wrx1,
-        'by_mmr': lambda d: -d.mu,
+        'by_mmr': lambda d: (
+                -d.mmr.mu
+        ),
         'by_speed': lambda d: (
                 d._avg_win_turn,
                 d._avg_elim_turn,
@@ -383,7 +387,7 @@ def _calculate_ranks(decks):
                 d._fastest_elim,
                 -d.winrate,
                 -d._n_eliminations,
-                -d.mu
+                -d.mmr.mu
         )
     }.items():
         for rank, deck in enumerate(sorted(ranked, key=ranking)):
@@ -394,7 +398,8 @@ def print_decks(decks, key):
     def print_deck(d):
         print(d.simple_name, d.architect, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
               d.get_fastest_win(), d.get_avg_win_turn(), d.get_n_eliminations(), d.get_fastest_elim(),
-              d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate, d.wrx1, d.mu, d.sigma,
+              d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate, d.wrx1,
+              d.mmr.mu, d.mmr.sigma,
               d.ranks['by_mmr'], d.rank_delta['by_mmr'],
               d.ranks['by_delta'], d.rank_delta['by_delta'],
               d.ranks['by_tbs'], d.rank_delta['by_tbs'],
@@ -537,7 +542,7 @@ def foo(d):
     return decks, diffs, wins_by_turn_order
 
 
-def trueskill(date=None):
+def truskrillex(date=None):
     with open('./data/edh.json', 'r',) as f:
         record = json.load(f)
     gs = record['games']
@@ -566,6 +571,7 @@ def trueskill(date=None):
             ranks = [0] + ([1] * len(losers))
             new_ratings = rate(rating_group, ranks=ranks)
             new_ratings_r = rate(rating_group_r, ranks=ranks)
+            test_ratings = rate(rating_group, ranks=list(range(len(decks))))
             for idx, (rating,) in enumerate(new_ratings):
                 if idx == 0:
                     ratings_by_deck[winner] = rating
@@ -577,6 +583,12 @@ def trueskill(date=None):
                     ratings_by_deck_r[winner] = rating
                 else:
                     ratings_by_deck_r[losers[len(losers) - idx]] = rating
+
+    # env = global_env()
+
+    # for d, r in ratings_by_deck.items():
+    #     print(f'{d}\t{env.expose(r)}')
+    # print()
 
     # for deck, rating in sorted(ratings_by_deck.items(), key=lambda dxr: -dxr[1].mu):
     #     print(f'{deck}\t{rating.mu}\t{rating.sigma}')
