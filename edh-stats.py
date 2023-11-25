@@ -54,6 +54,12 @@ class Deck:
 
     def get_alias(self):
         if self.aliases:
+            return self.aliases[0] + ' - ' + self.architect
+        else:
+            return self.name
+
+    def get_simple_alias(self):
+        if self.aliases:
             return self.aliases[0]
         else:
             return self.simple_name
@@ -150,7 +156,7 @@ class Deck:
             self.rank_delta[metric] = 'New!'
         self.ranks[metric] = rank
 
-    def calculate_metrics(self, decks):
+    def calculate_metrics(self, decks_by_names):
         avg_n_players = statistics.mean(
             map(lambda game: len(game.decks), self.games)
         )
@@ -167,8 +173,8 @@ class Deck:
             self._avg_elim_turn = statistics.mean(self.eliminations.elements())
             self._fastest_elim = min(self.eliminations.keys())
 
-        op_wins = sum(map(lambda op: decks[op].wins, self.matchups))
-        op_played = sum(map(lambda op: decks[op].played, self.matchups))
+        op_wins = sum(map(lambda op: decks_by_names[op].wins, self.matchups))
+        op_played = sum(map(lambda op: decks_by_names[op].played, self.matchups))
         self.op_winrate = op_wins / op_played
 
         self.wrx1 = (self.winrate + 1) * (self.op_winrate + 1)
@@ -230,10 +236,28 @@ class Game:
                 rankings.append(r)
         return decks, rankings
 
+    def update_results(self, decks_by_names, wins_by_turn_order):
+        if parse_date(self.date) >= parse_date('2/2/2023'):
+            wins_by_turn_order[len(self.decks)][self.decks.index(self.winner) + 1] += 1
+
+        for deck_name in self.decks:
+            deck = decks_by_names[deck_name]
+            deck.update_game_results(self)
+            deck.update_matchups(self)
+            deck.update_eliminations(self)
+
+        # deck_names, game_rankings = game.get_rankings()
+        deck_names, _ = self.get_rankings()
+        game_rankings = [0] + ([1] * len(self.losers))
+        deck_ratings = [(decks_by_names[dck].mmr,) for dck in deck_names]
+        new_ratings = rate(deck_ratings, ranks=game_rankings)
+        for idx, (rating,) in enumerate(new_ratings):
+            decks_by_names[deck_names[idx]].mmr = rating
+
 
 def parse_records(filepath):
-    decks = {}
-    games = {}
+    decks_by_names = {}
+    games = []
     with open(filepath, 'r') as f:
         records = json.load(f)
 
@@ -242,7 +266,6 @@ def parse_records(filepath):
     for record in records['games']:
         gs = record['games']
         date = record['date']
-        games[date] = []
 
         for game in gs:
             players = game['players']
@@ -269,17 +292,17 @@ def parse_records(filepath):
 
                 archideck_name = simple_deck_name + ' - ' + architect
                 archideck_names[simple_deck_name] = archideck_name
-                if archideck_name not in decks:
+                if archideck_name not in decks_by_names:
                     if 'alias' in p:
                         alias_name = p['alias'] + ' - ' + architect
-                        if alias_name not in decks:
+                        if alias_name not in decks_by_names:
                             raise Exception(f'alias {alias_name} for {archideck_name} not found in game dated {date}')
-                        aliased_deck = decks[alias_name]
+                        aliased_deck = decks_by_names[alias_name]
                         aliased_deck.aliases.insert(0, simple_deck_name)
                         archideck_names[simple_deck_name] = alias_name
-                        decks[archideck_name] = aliased_deck
+                        decks_by_names[archideck_name] = aliased_deck
                     else:
-                        decks[archideck_name] = Deck(simple_deck_name, architect)
+                        decks_by_names[archideck_name] = Deck(simple_deck_name, architect)
 
             eliminations = {}
 
@@ -305,78 +328,34 @@ def parse_records(filepath):
                 archideck_names,
                 eliminations
             )
-            games[date].append(game_object)
-    return decks, games
+            games.append(game_object)
+    return games, {deck.get_alias(): deck for deck in decks_by_names.values()}.values(), decks_by_names
 
 
-def update_record_results(decks, games):
+def update_record_results(games, decks, decks_by_names):
+    def update(gs, ds):
+        for g in gs:
+            g.update_results(decks_by_names, wins_by_turn_order)
+        for d in ds:
+            d.calculate_metrics(decks_by_names)
+        calculate_ranks(decks)
+
     wins_by_turn_order = {
         3: Counter(),
         4: Counter()
     }
 
-    games_as_list = [(d, gs) for d, gs in games.items()]
+    last_date = games[-1].date
+    past_games, new_games = partition(lambda g: g.date != last_date, games)
 
-    for d, gs in games_as_list[:-1]:
-        for game in gs:
-            if parse_date(d) >= parse_date('2/2/2023'):
-                wins_by_turn_order[len(game.decks)][game.decks.index(game.winner) + 1] += 1
-
-            for deck_name in game.decks:
-                deck = decks[deck_name]
-                deck.update_game_results(game)
-                deck.update_matchups(game)
-                deck.update_eliminations(game)
-
-            # deck_names, game_rankings = game.get_rankings()
-            deck_names, _ = game.get_rankings()
-            game_rankings = [0] + ([1] * len(game.losers))
-            deck_ratings = [(decks[d].mmr,) for d in deck_names]
-            new_ratings = rate(deck_ratings, ranks=game_rankings)
-            for idx, (rating,) in enumerate(new_ratings):
-                dd = deck_names[idx]
-                ddd = decks[dd]
-                ddd.mmr = rating
-
-    last_game = games_as_list[-1]
-
-    for deck in filter(lambda d: d.played, decks.values()):
-        deck.calculate_metrics(decks)
-
-    calculate_ranks(decks)
-
-    for game in last_game[1]:
-        wins_by_turn_order[len(game.decks)][game.decks.index(game.winner) + 1] += 1
-
-        for deck_name in game.decks:
-            deck = decks[deck_name]
-            deck.update_game_results(game)
-            deck.update_matchups(game)
-            deck.update_eliminations(game)
-
-        deck_names, game_rankings = game.get_rankings()
-        deck_ratings = [(decks[d].mmr,) for d in deck_names]
-        new_ratings = rate(deck_ratings, ranks=game_rankings)
-        for idx, (rating,) in enumerate(new_ratings):
-            decks[deck_names[idx]].mmr = rating
-
-    for deck in decks.values():
-        deck.calculate_metrics(decks)
-
-    calculate_ranks(decks)
+    update(past_games, filter(lambda d: d.played, decks))
+    update(new_games, decks)
 
     return wins_by_turn_order
 
 
-def by_speed(d):
-    if type(d.get_avg_win_turn()) is str or type(d.get_avg_elim_turn()) is str:
-        return 100, 100, 100, 100, 100
-
-    return d.get_avg_win_turn(), d.get_avg_elim_turn(), d.get_fastest_win(), d.get_fastest_elim(), -d.winrate
-
-
 def calculate_ranks(decks):
-    ranked = list(filter(lambda d: d.is_ranked(), decks.values()))
+    ranked = list(filter(lambda d: d.is_ranked(), decks))
 
     for metric, ranking in {
         'by_tbs': lambda d: (
@@ -409,7 +388,7 @@ def calculate_ranks(decks):
 
 def print_decks(decks, key):
     def print_deck(d):
-        print(d.get_alias(), d.architect, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
+        print(d.get_simple_alias(), d.architect, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
               d.get_fastest_win(), d.get_avg_win_turn(), d.get_n_eliminations(), d.get_fastest_elim(),
               d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate, d.wrx1,
               d.mmr.mu, d.mmr.sigma,
@@ -431,15 +410,7 @@ def print_decks(decks, key):
              "\tBy speed\tΔ"
     print(header)
 
-    aliased_decks = sorted({deck.get_alias(): deck for deck in decks.values()}.values(), key=key)
-
-    ranked, unranked = partition(lambda d: d.is_ranked(),
-                                 aliased_decks)
-                                 # sorted({
-                                 #     deck.get_alias(): deck
-                                 #     for deck in decks.values()
-                                 # },
-                                 #     key=key))
+    ranked, unranked = partition(lambda d: d.is_ranked(), sorted(decks, key=key))
 
     for deck in ranked:
         print_deck(deck)
@@ -478,8 +449,8 @@ def main():
     record_filepath = './data/edh.json'
 
     date = "4/19/2999"
-    decks, games = parse_records(record_filepath)
-    wins = update_record_results(decks, games)
+    games, decks, decks_by_names = parse_records(record_filepath)
+    wins = update_record_results(games, decks, decks_by_names)
     print_decks(decks, key=alphabetical)
     print_wins(wins)
 
