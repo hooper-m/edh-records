@@ -3758,6 +3758,124 @@
           }
         }
       ]
+    },
+    {
+      "date": "11/21/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Thraximundar"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Etrata"
+            }
+          ],
+          "winner": "Thraximundar",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Thraximundar",
+                "eliminated": [
+                  "Alela, Artful Provocateur",
+                  "Etrata"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Etrata"
+            },
+            {
+              "player": "June",
+              "deck": "Thraximundar"
+            }
+          ],
+          "winner": "Alela, Artful Provocateur",
+          "eliminations": {
+            "10": [
+              {
+                "eliminator": "Alela, Artful Provocateur",
+                "eliminated": [
+                  "Etrata",
+                  "Thraximundar"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Shorikai"
+            },
+            {
+              "player": "June",
+              "deck": "Alela, Cunning Conqueror",
+              "alias": "Wydwen"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            }
+          ],
+          "winner": "Shorikai",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Shorikai",
+                "eliminated": [
+                  "Alela, Cunning Conqueror",
+                  "Nethroi"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Feldon"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Zirilan"
+            }
+          ],
+          "winner": "Zirilan",
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Zirilan",
+                "eliminated": [
+                  "Feldon",
+                  "Nethroi"
+                ]
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }

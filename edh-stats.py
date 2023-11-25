@@ -10,6 +10,7 @@ class Deck:
     def __init__(self, name, architect):
         self.name = name + ' - ' + architect
         self.simple_name = name
+        self.aliases = []
         self.architect = architect
         self.wins = 0
         self.played = 0
@@ -50,6 +51,12 @@ class Deck:
 
     def is_ranked(self):
         return self.played > 2
+
+    def get_alias(self):
+        if self.aliases:
+            return self.aliases[0]
+        else:
+            return self.simple_name
 
     def get_assists(self):
         return self._assists or ''
@@ -165,7 +172,6 @@ class Deck:
         self.op_winrate = op_wins / op_played
 
         self.wrx1 = (self.winrate + 1) * (self.op_winrate + 1)
-        # self.mu, self.sigma = mmr[self.name]
 
 
 class Game:
@@ -231,7 +237,7 @@ def parse_records(filepath):
     with open(filepath, 'r') as f:
         records = json.load(f)
 
-    valid_players_keys = {'player', 'deck', 'architect'}
+    valid_players_keys = {'player', 'deck', 'architect', 'alias'}
 
     for record in records['games']:
         gs = record['games']
@@ -264,7 +270,16 @@ def parse_records(filepath):
                 archideck_name = simple_deck_name + ' - ' + architect
                 archideck_names[simple_deck_name] = archideck_name
                 if archideck_name not in decks:
-                    decks[archideck_name] = Deck(simple_deck_name, architect)
+                    if 'alias' in p:
+                        alias_name = p['alias'] + ' - ' + architect
+                        if alias_name not in decks:
+                            raise Exception(f'alias {alias_name} for {archideck_name} not found in game dated {date}')
+                        aliased_deck = decks[alias_name]
+                        aliased_deck.aliases.insert(0, simple_deck_name)
+                        archideck_names[simple_deck_name] = alias_name
+                        decks[archideck_name] = aliased_deck
+                    else:
+                        decks[archideck_name] = Deck(simple_deck_name, architect)
 
             eliminations = {}
 
@@ -394,7 +409,7 @@ def calculate_ranks(decks):
 
 def print_decks(decks, key):
     def print_deck(d):
-        print(d.simple_name, d.architect, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
+        print(d.get_alias(), d.architect, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
               d.get_fastest_win(), d.get_avg_win_turn(), d.get_n_eliminations(), d.get_fastest_elim(),
               d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate, d.wrx1,
               d.mmr.mu, d.mmr.sigma,
@@ -416,7 +431,15 @@ def print_decks(decks, key):
              "\tBy speed\tΔ"
     print(header)
 
-    ranked, unranked = partition(lambda dck: dck.is_ranked(), sorted(decks.values(), key=key))
+    aliased_decks = sorted({deck.get_alias(): deck for deck in decks.values()}.values(), key=key)
+
+    ranked, unranked = partition(lambda d: d.is_ranked(),
+                                 aliased_decks)
+                                 # sorted({
+                                 #     deck.get_alias(): deck
+                                 #     for deck in decks.values()
+                                 # },
+                                 #     key=key))
 
     for deck in ranked:
         print_deck(deck)
@@ -450,7 +473,7 @@ def partition(function, iterable):
 
 def main():
     by_score = lambda d: -d['score']
-    alphabetical = lambda d: d.name
+    alphabetical = lambda d: d.get_alias()
 
     record_filepath = './data/edh.json'
 
