@@ -453,6 +453,122 @@ def partition(function, iterable):
     return filter(function, iterable), filter(lambda x: not function(x), iterable)
 
 
+def match_quality(decks, _print=False):
+    env = trueskill.global_env()
+    decks = sorted(filter(lambda dck: dck.architect in ['June', 'Tony', 'Hooper', 'Pham', 'Rachael'], decks), key=lambda dck: dck.name)
+    rev = [r for r in reversed(decks)]
+    mqs = []
+    if _print:
+        print('\t', end='')
+        for r in rev:
+            print(f'{r.get_alias()}\t', end='')
+        print()
+
+    for d in decks:
+        if _print:
+            print(f'{d.get_alias()}\t', end='')
+        for r in rev:
+            if d.get_alias() == r.get_alias():
+                break
+            q = env.quality([(d.mmr,), (r.mmr,)])
+            mqs.append((d.get_alias(), r.get_alias(), q))
+            if _print:
+                print(f'{q}\t', end='')
+        if _print:
+            print()
+    return mqs
+
+# matchmaking:
+#   for each deck,
+#       find best deck
+#       if best deck not in group,
+#           if deck not in group,
+#               add deck to group
+#           add best deck to deck's group
+#       else
+#           if deck not in group
+#               add deck to best's group
+#       else if more than 5 groups,
+#           merge groups
+def tiers(mqs):
+    grid = {}
+    groups_by_deck = {}
+    groups = []
+    for d, r, q in mqs:
+        if d not in grid:
+            grid[d] = []
+        if r not in grid:
+            grid[r] = []
+        grid[d].append((q, r))
+        grid[r].append((q, d))
+    for deck, qs in grid.items():
+        by_q = sorted(qs, key=lambda qq: -qq[0])
+        _, best = by_q[0]
+        if best not in groups_by_deck:
+            if deck not in groups_by_deck:
+                group = len(groups)
+                groups.append([deck])
+                groups_by_deck[deck] = group
+            group = groups_by_deck[deck]
+            groups_by_deck[best] = group
+            groups[group].append(best)
+        elif deck not in groups_by_deck:
+            best_group = groups_by_deck[best]
+            groups_by_deck[deck] = best_group
+            groups[best_group].append(deck)
+        elif len(groups) > 5:
+            group = groups_by_deck[deck]
+            best_group = groups_by_deck[best]
+            best_group_list = groups.pop(best_group)
+            groups[group] += best_group_list
+            for d in best_group_list:
+                groups_by_deck[d] = group
+    for group in groups:
+        print(group)
+
+
+def pods(decks):
+    env = trueskill.global_env()
+    decks = [d for d in decks if d.architect in {'Hooper', 'June', 'Pham', 'Rachael', 'Tony'}]
+
+    unique_players = ['Hooper', 'June', 'Pham', 'Rachael', 'Tony']
+    upqs = []
+    for idx in range(len(unique_players)):
+        pod = unique_players[:idx] + unique_players[idx+1:]
+        for di in filter(lambda d: d.architect == pod[0], decks):
+            for dj in filter(lambda d: d.architect == pod[1], decks):
+                for dk in filter(lambda d: d.architect == pod[2], decks):
+                    for dl in filter(lambda d: d.architect == pod[3], decks):
+                        ds = [di, dj, dk, dl]
+                        q = env.quality(list(map(lambda d: (d.mmr,), ds)))
+                        upqs.append((list(map(lambda d: d.get_alias(), ds)), q))
+
+    unique_pods_by_best = sorted(upqs, key=lambda dsq: dsq[1])
+
+    for ds, q in unique_pods_by_best[:10]:
+        print(f'{q}\t{ds}')
+
+    for ds, q in unique_pods_by_best[-10:]:
+        print(f'{q}\t{ds}')
+
+    pqs = []
+    for i in range(len(decks)):
+        for j in range(i+1, len(decks)):
+            for k in range(j+1, len(decks)):
+                for l in range(k+1, len(decks)):
+                    ds = [decks[i], decks[j], decks[k], decks[l]]
+                    q = env.quality(list(map(lambda d: (d.mmr,), ds)))
+                    pqs.append((list(map(lambda d: d.get_alias(), ds)), q))
+
+    pods_by_best = sorted(pqs, key=lambda dsq: dsq[1])
+
+    for ds, q in pods_by_best[:10]:
+        print(f'{q}\t{ds}')
+
+    for ds, q in pods_by_best[-10:]:
+        print(f'{q}\t{ds}')
+
+
 def main():
     trueskill.setup(draw_probability=0.001)
 
@@ -464,8 +580,15 @@ def main():
     date = "4/19/2999"
     games, unique_decks, decks_by_names = parse_records(record_filepath)
     wins = update_record_results(games, unique_decks, decks_by_names)
-    print_decks(unique_decks, key=alphabetical)
-    print_wins(wins)
+    # print_decks(unique_decks, key=alphabetical)
+    # print_wins(wins)
+
+    pods(unique_decks)
+    # tiers(match_quality(unique_decks))
+    # for d, r, q in match_quality(unique_decks):
+    #     print(f'{d}\t{r}\t{q}')
+
+    # print_match_quality(unique_decks)
 
 
 if __name__ == '__main__':
