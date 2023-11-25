@@ -13,7 +13,7 @@
     "june": [
       "Animar",
       "Borborygmos",
-      "Erinis",
+      "Erinis, Scion of Halaster",
       "Feldon",
       "Inalla",
       "Rashmi",
@@ -139,7 +139,7 @@
             },
             {
               "player": "June",
-              "deck": "Erinis"
+              "deck": "Erinis, Scion of Halaster"
             }
           ],
           "winner": "Kozilek"
@@ -246,7 +246,7 @@
             },
             {
               "player": "June",
-              "deck": "Erinis"
+              "deck": "Erinis, Scion of Halaster"
             },
             {
               "player": "Tony",
@@ -306,7 +306,7 @@
           "players": [
             {
               "player": "June",
-              "deck": "Erinis"
+              "deck": "Erinis, Scion of Halaster"
             },
             {
               "player": "Hooper",
@@ -321,7 +321,7 @@
               "deck": "Omnath"
             }
           ],
-          "winner": "Erinis"
+          "winner": "Erinis, Scion of Halaster"
         },
         {
           "players": [
@@ -1299,7 +1299,7 @@
           "players": [
             {
               "player": "June",
-              "deck": "Erinis"
+              "deck": "Erinis, Scion of Halaster"
             },
             {
               "player": "Hooper",
@@ -1320,7 +1320,7 @@
               {
                 "eliminator": "Teysa",
                 "eliminated": [
-                  "Erinis",
+                  "Erinis, Scion of Halaster",
                   "Jared",
                   "The First Sliver"
                 ]
@@ -1943,7 +1943,7 @@
             },
             {
               "player": "June",
-              "deck": "Erinis"
+              "deck": "Erinis, Scion of Halaster"
             },
             {
               "player": "Tony",
@@ -1956,7 +1956,7 @@
               {
                 "eliminator": "Tivit",
                 "eliminated": [
-                  "Erinis",
+                  "Erinis, Scion of Halaster",
                   "Giada"
                 ]
               }
@@ -1965,7 +1965,7 @@
               {
                 "eliminator": "Tivit",
                 "eliminated": [
-                  "Erinis"
+                  "Erinis, Scion of Halaster"
                 ]
               }
             ]
@@ -2514,14 +2514,14 @@
             },
             {
               "player": "June",
-              "deck": "Erinis"
+              "deck": "Erinis, Scion of Halaster"
             }
           ],
-          "winner": "Erinis",
+          "winner": "Erinis, Scion of Halaster",
           "eliminations": {
             "9": [
               {
-                "eliminator": "Erinis",
+                "eliminator": "Erinis, Scion of Halaster",
                 "eliminated": [
                   "Nethroi",
                   "Ur-Dragon"
@@ -2698,7 +2698,7 @@
             },
             {
               "player": "June",
-              "deck": "Erinis"
+              "deck": "Erinis, Scion of Halaster"
             },
             {
               "player": "Hooper",
@@ -2710,7 +2710,7 @@
               "deck": "Kaalia"
             }
           ],
-          "winner": "Erinis",
+          "winner": "Erinis, Scion of Halaster",
           "eliminations": {
             "8": [
               {
@@ -2720,7 +2720,7 @@
                 ]
               },
               {
-                "eliminator": "Erinis",
+                "eliminator": "Erinis, Scion of Halaster",
                 "eliminated": [
                   "Nethroi",
                   "Giada"
@@ -3125,7 +3125,7 @@
           "players": [
             {
               "player": "June",
-              "deck": "Erinis"
+              "deck": "Erinis, Scion of Halaster"
             },
             {
               "player": "Hooper",
@@ -3150,7 +3150,7 @@
               {
                 "eliminator": "Kathril",
                 "eliminated": [
-                  "Erinis"
+                  "Erinis, Scion of Halaster"
                 ]
               }
             ]

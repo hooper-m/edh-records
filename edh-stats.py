@@ -3,6 +3,7 @@ import json
 import statistics
 from collections import Counter
 
+import trueskill
 from trueskill import Rating, rate
 
 
@@ -26,14 +27,16 @@ class Deck:
             'by_delta': '',
             'by_wrx1': '',
             'by_mmr': '',
-            'by_speed': ''
+            'by_speed': '',
+            'by_exposure': ''
         }
         self.rank_delta = {
             'by_tbs': '',
             'by_delta': '',
             'by_wrx1': '',
             'by_mmr': '',
-            'by_speed': ''
+            'by_speed': '',
+            'by_exposure': ''
         }
         self.winrate = None
         self.expected_winrate = None
@@ -246,9 +249,7 @@ class Game:
             deck.update_matchups(self)
             deck.update_eliminations(self)
 
-        # deck_names, game_rankings = game.get_rankings()
-        deck_names, _ = self.get_rankings()
-        game_rankings = [0] + ([1] * len(self.losers))
+        deck_names, game_rankings = self.get_rankings()
         deck_ratings = [(decks_by_names[dck].mmr,) for dck in deck_names]
         new_ratings = rate(deck_ratings, ranks=game_rankings)
         for idx, (rating,) in enumerate(new_ratings):
@@ -329,16 +330,20 @@ def parse_records(filepath):
                 eliminations
             )
             games.append(game_object)
-    return games, {deck.get_alias(): deck for deck in decks_by_names.values()}.values(), decks_by_names
+
+    unique_decks = list({deck.get_alias(): deck for deck in decks_by_names.values()}.values())
+    return games, unique_decks, decks_by_names
 
 
-def update_record_results(games, decks, decks_by_names):
-    def update(gs, ds):
+def update_record_results(games, unique_decks, decks_by_names):
+    def update(gs, predicate=lambda _: True):
         for g in gs:
             g.update_results(decks_by_names, wins_by_turn_order)
+
+        ds = [d for d in unique_decks if predicate(d)]
         for d in ds:
             d.calculate_metrics(decks_by_names)
-        calculate_ranks(decks)
+        calculate_ranks(ds)
 
     wins_by_turn_order = {
         3: Counter(),
@@ -348,14 +353,15 @@ def update_record_results(games, decks, decks_by_names):
     last_date = games[-1].date
     past_games, new_games = partition(lambda g: g.date != last_date, games)
 
-    update(past_games, filter(lambda d: d.played, decks))
-    update(new_games, decks)
+    update(past_games, predicate=lambda d: d.played)
+    update(new_games)
 
     return wins_by_turn_order
 
 
 def calculate_ranks(decks):
-    ranked = list(filter(lambda d: d.is_ranked(), decks))
+    env = trueskill.global_env()
+    ranked = [d for d in decks if d.is_ranked()]
 
     for metric, ranking in {
         'by_tbs': lambda d: (
@@ -385,6 +391,9 @@ def calculate_ranks(decks):
         for rank, deck in enumerate(sorted(ranked, key=ranking)):
             deck.update_rank(metric, rank+1)
 
+    for rank, deck in enumerate(sorted(decks, key=lambda d: -env.expose(d.mmr))):
+        deck.update_rank('by_exposure', rank+1)
+
 
 def print_decks(decks, key):
     def print_deck(d):
@@ -392,6 +401,7 @@ def print_decks(decks, key):
               d.get_fastest_win(), d.get_avg_win_turn(), d.get_n_eliminations(), d.get_fastest_elim(),
               d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate, d.wrx1,
               d.mmr.mu, d.mmr.sigma,
+              d.ranks['by_exposure'], d.rank_delta['by_exposure'],
               d.ranks['by_mmr'], d.rank_delta['by_mmr'],
               d.ranks['by_delta'], d.rank_delta['by_delta'],
               d.ranks['by_tbs'], d.rank_delta['by_tbs'],
@@ -403,6 +413,7 @@ def print_decks(decks, key):
     header = "name\tplayer\twins\tplayed\twin %\tex. win %\twin % delta\tfastest win\tavg win turn\teliminations" \
              "\tfastest elimination\tavg elim turn\tassists\tscore\top win %" \
              "\twrx1 ((win % + 1) x (op win % + 1))\tmmr\tsigma" \
+             "\tBy exposure\tΔ" \
              "\tBy mmr\tΔ" \
              "\tBy tiebreaks (win % delta, played, op win %)\tΔ" \
              "\tBy tiebreaks (win %, played, op win %)\tΔ" \
@@ -443,15 +454,17 @@ def partition(function, iterable):
 
 
 def main():
+    trueskill.setup(draw_probability=0.001)
+
     by_score = lambda d: -d['score']
     alphabetical = lambda d: d.get_alias()
 
     record_filepath = './data/edh.json'
 
     date = "4/19/2999"
-    games, decks, decks_by_names = parse_records(record_filepath)
-    wins = update_record_results(games, decks, decks_by_names)
-    print_decks(decks, key=alphabetical)
+    games, unique_decks, decks_by_names = parse_records(record_filepath)
+    wins = update_record_results(games, unique_decks, decks_by_names)
+    print_decks(unique_decks, key=alphabetical)
     print_wins(wins)
 
 
