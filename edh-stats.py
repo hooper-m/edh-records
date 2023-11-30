@@ -73,7 +73,7 @@ class Deck:
 
     def get_avg_win_turn(self):
         if self.wins == 0:
-            return 'n/a'
+            return ''
         elif len(self.wins_by_turn) == 0:
             return '?'
         else:
@@ -81,7 +81,7 @@ class Deck:
 
     def get_fastest_win(self):
         if self.wins == 0:
-            return 'n/a'
+            return ''
         elif len(self.wins_by_turn) == 0:
             return '?'
         else:
@@ -89,19 +89,19 @@ class Deck:
 
     def get_n_eliminations(self):
         if len(self.eliminations) == 0:
-            return '?'
+            return ''
         else:
             return self._n_eliminations
 
     def get_avg_elim_turn(self):
         if len(self.eliminations) == 0:
-            return '?'
+            return ''
         else:
             return self._avg_elim_turn
 
     def get_fastest_elim(self):
         if len(self.eliminations) == 0:
-            return '?'
+            return ''
         else:
             return self._fastest_elim
 
@@ -463,6 +463,7 @@ def print_wins(games, wins):
             ws = wins[p][i]
             print(f'{i}\t{ws}\t{ws / total}')
         print(f'total\t{total}')
+        print()
 
 
 def parse_date(d):
