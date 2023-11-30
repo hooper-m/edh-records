@@ -204,11 +204,6 @@ class Game:
             for deck_name in archideck_names.values()
         }
 
-        self.scoops_by_deck = {
-            deck_name: {}
-            for deck_name in archideck_names.values()
-        }
-
         assists_by_deck = Counter({
             deck: 0
             for deck in decks_by_turn_order
@@ -303,7 +298,6 @@ def parse_records(filepath):
                     architect = player_name
 
                 archideck_name = simple_deck_name + ' - ' + architect
-                archideck_names[simple_deck_name] = archideck_name
                 if archideck_name not in decks_by_names:
                     if 'alias' in p:
                         alias_name = p['alias'] + ' - ' + architect
@@ -314,7 +308,10 @@ def parse_records(filepath):
                         archideck_names[simple_deck_name] = alias_name
                         decks_by_names[archideck_name] = aliased_deck
                     else:
+                        archideck_names[simple_deck_name] = archideck_name
                         decks_by_names[archideck_name] = Deck(simple_deck_name, architect)
+                else:
+                    archideck_names[simple_deck_name] = decks_by_names[archideck_name].name
 
             eliminations = {}
 
@@ -444,9 +441,6 @@ def print_decks(decks, key):
 
     for deck in ranked:
         print_deck(deck)
-
-    print()
-
     for deck in unranked:
         print_deck(deck)
 
@@ -653,12 +647,12 @@ def main():
     date = "4/19/2999"
     games, unique_decks, decks_by_names = parse_records(record_filepath)
     wins = update_record_results(games, unique_decks, decks_by_names)
-    # print_decks(unique_decks, key=alphabetical)
-    # print_wins(wins)
+    print_decks(unique_decks, key=alphabetical)
+    print_wins(wins)
 
     # pods(unique_decks)
     # tiers(match_quality(unique_decks))
-    exposure_tiers(unique_decks)
+    # exposure_tiers(unique_decks)
     # for d, r, q in match_quality(unique_decks):
     #     print(f'{d}\t{r}\t{q}')
 
