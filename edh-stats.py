@@ -1,5 +1,6 @@
 import datetime
 import json
+import queue
 import statistics
 from collections import Counter
 
@@ -455,7 +456,9 @@ def partition(function, iterable):
 
 def match_quality(decks, _print=False):
     env = trueskill.global_env()
-    decks = sorted(filter(lambda dck: dck.architect in ['June', 'Tony', 'Hooper', 'Pham', 'Rachael'], decks), key=lambda dck: dck.name)
+    filter_by_author = filter(lambda dck: dck.architect in ['June', 'Tony', 'Hooper', 'Pham', 'Rachael'], decks)
+    filter_by_played = filter(lambda dck: dck.played > 2, filter_by_author)
+    decks = sorted(filter_by_played, key=lambda dck: dck.name)
     rev = [r for r in reversed(decks)]
     mqs = []
     if _print:
@@ -478,6 +481,7 @@ def match_quality(decks, _print=False):
             print()
     return mqs
 
+
 # matchmaking:
 #   for each deck,
 #       find best deck
@@ -494,6 +498,8 @@ def tiers(mqs):
     grid = {}
     groups_by_deck = {}
     groups = []
+    chaelela = 'Alela, Artful Provocateur - Rachael'
+    chaeldrotha = 'Muldrotha - Rachael'
     for d, r, q in mqs:
         if d not in grid:
             grid[d] = []
@@ -501,9 +507,17 @@ def tiers(mqs):
             grid[r] = []
         grid[d].append((q, r))
         grid[r].append((q, d))
+    # for deck, qs in grid.items():
+    #     by_q = sorted(qs, key=lambda qq: -qq[0])
+    #     _, best = by_q[0]
+    #     print(f'{deck}\t{best}')
     for deck, qs in grid.items():
         by_q = sorted(qs, key=lambda qq: -qq[0])
         _, best = by_q[0]
+        if best == chaeldrotha:
+            _, best = by_q[1]
+            # if best == chaeldrotha:
+            #     _, best = by_q[2]
         if best not in groups_by_deck:
             if deck not in groups_by_deck:
                 group = len(groups)
@@ -523,8 +537,19 @@ def tiers(mqs):
             groups[group] += best_group_list
             for d in best_group_list:
                 groups_by_deck[d] = group
-    for group in groups:
+    sorted_groups = [sorted(g) for g in groups]
+    for group in sorted_groups:
         print(group)
+    for i in range(max(map(len, sorted_groups))):
+        for group in sorted_groups:
+            deck = ''
+            arch = ''
+            if i < len(group):
+                archideck = group[i]
+                deck, arch = archideck.split(' - ')
+            print(deck, end='\t')
+            print(arch, end='\t\t')
+        print()
 
 
 def pods(decks):
@@ -569,6 +594,36 @@ def pods(decks):
         print(f'{q}\t{ds}')
 
 
+def exposure_tiers(decks):
+    env = trueskill.global_env()
+    retired = ['Inalla', 'Kess', 'Teferi']
+    filter_by_author = filter(lambda dck: dck.architect in ['June', 'Tony', 'Hooper', 'Pham', 'Rachael'], decks)
+    filter_by_played = filter(lambda dck: dck.played > 2, filter_by_author)
+    filter_by_retired = filter(lambda dck: dck.simple_name not in retired, filter_by_played)
+    by_exposure = sorted(filter_by_retired, key=lambda d: d.ranks['by_exposure'])
+    worst_mqs = queue.PriorityQueue()
+    exposure_tiers_by_deck = {}
+    for idx in range(1, len(by_exposure)):
+        d1 = decks[idx-1]
+        d2 = decks[idx]
+        mq = env.quality([(d1.mmr,), (d2.mmr,)])
+        worst_mqs.put((mq, idx))
+    tier_breakpoints = []
+    for i in range(4):
+        tier_breakpoints.append(worst_mqs.get()[1])
+    tier_breakpoints = sorted(tier_breakpoints, reverse=True)
+    next_breakpoint = tier_breakpoints.pop()
+    tier = 1
+    for idx, deck in enumerate(by_exposure):
+        if idx == next_breakpoint:
+            if len(tier_breakpoints):
+                next_breakpoint = tier_breakpoints.pop()
+            tier += 1
+        exposure_tiers_by_deck[deck.get_alias()] = tier
+    for deck, tier in exposure_tiers_by_deck.items():
+        print(f'{deck}\t{tier}')
+
+
 def main():
     trueskill.setup(draw_probability=0.001)
 
@@ -583,8 +638,9 @@ def main():
     # print_decks(unique_decks, key=alphabetical)
     # print_wins(wins)
 
-    pods(unique_decks)
+    # pods(unique_decks)
     # tiers(match_quality(unique_decks))
+    exposure_tiers(unique_decks)
     # for d, r, q in match_quality(unique_decks):
     #     print(f'{d}\t{r}\t{q}')
 
