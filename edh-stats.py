@@ -106,7 +106,7 @@ class Deck:
             return self._fastest_elim
 
     def update_game_results(self, game):
-        if self.name == game.winner:
+        if self.name in game.winners:
             if game.elims_by_deck:
                 points = sum(map(
                     len,
@@ -122,15 +122,16 @@ class Deck:
         self.games.append(game)
 
     def update_matchups(self, game):
-        if self.name == game.winner:
+        if self.name in game.winners:
             for loser_name in game.losers:
                 if loser_name not in self.matchups:
                     self.matchups[loser_name] = 0
                 self.matchups[loser_name] += 1
         else:
-            if game.winner not in self.matchups:
-                self.matchups[game.winner] = 0
-            self.matchups[game.winner] -= 1
+            for winner in game.winners:
+                if winner not in self.matchups:
+                    self.matchups[winner] = 0
+                self.matchups[winner] -= 1
 
     def update_eliminations(self, game):
         if not game.elims_by_deck:
@@ -138,13 +139,13 @@ class Deck:
 
         elims_by_turn = game.elims_by_deck[self.name]
 
-        if self.name == game.winner:
-            turn_won = max(elims_by_turn.keys())
+        if self.name in game.winners:
+            turn_won = game.turns if not elims_by_turn else max(elims_by_turn.keys())
             self.wins_by_turn[turn_won] += 1
         for turn, losers in elims_by_turn.items():
             n_elims = len(losers)
             self.eliminations[turn] += n_elims
-            if self.name != game.winner:
+            if self.name not in game.winners:
                 self._assists += n_elims
                 self.score += n_elims
 
@@ -185,14 +186,15 @@ class Deck:
 
 
 class Game:
-    def __init__(self, date, decks_by_turn_order, winner, archideck_names, eliminations):
+    def __init__(self, date, decks_by_turn_order, winners, archideck_names, eliminations):
         self.date = date
         self.decks = decks_by_turn_order
-        self.winner = winner
-        self.losers = [d for d in self.decks if d != self.winner]
+        self.winners = winners
+        self.losers = [d for d in self.decks if d not in winners]
         self.elims_by_deck = None
+        self.turns = None
         self._rankings = [
-            [winner],
+            winners,
             self.losers
         ]
 
@@ -207,12 +209,14 @@ class Game:
         assists_by_deck = Counter({
             deck: 0
             for deck in decks_by_turn_order
-            # if deck not in winners
-            if deck != winner
+            if deck not in winners
         })
+
+        max_turn = 0
 
         for t, es in eliminations.items():
             turn = int(t)
+            max_turn = max(max_turn, turn)
             for e in es:
                 eliminator = archideck_names[e['eliminator']]
                 eliminated = list(map(
@@ -220,14 +224,15 @@ class Game:
                     ([] if 'eliminated' not in e else e['eliminated']) + ([] if 'scoops' not in e else e['scoops'])
                 ))
                 self.elims_by_deck[eliminator][turn] = eliminated
-                if eliminator != winner:
+                if eliminator not in winners:
                     assists_by_deck[eliminator] += len(eliminated)
+
+        self.turns = max_turn
 
         if not assists_by_deck.total():
             return
 
-        # self._rankings = [sorted(winners, key=decks_by_turn_order.index)]
-        self._rankings = [[winner]]
+        self._rankings = [sorted(winners, key=decks_by_turn_order.index)]
 
         decks_by_assists = [[], [], []]
         for deck, assists in assists_by_deck.items():
@@ -247,7 +252,8 @@ class Game:
 
     def update_results(self, decks_by_names, wins_by_turn_order):
         if parse_date(self.date) >= parse_date('2/2/2023'):
-            wins_by_turn_order[len(self.decks)][self.decks.index(self.winner) + 1] += 1
+            for winner in self.winners:
+                wins_by_turn_order[len(self.decks)][self.decks.index(winner) + 1] += 1
 
         for deck_name in self.decks:
             deck = decks_by_names[deck_name]
@@ -276,12 +282,13 @@ def parse_records(filepath):
 
         for game in gs:
             players = game['players']
-            winner = game['winner']
+            winners = game['winners']
             simple_deck_names = list(map(lambda pxd: pxd['deck'], players))
             archideck_names = {}
 
-            if winner not in simple_deck_names:
-                raise Exception(f'winner {winner} not found in game dated {date}')
+            for winner in winners:
+                if winner not in simple_deck_names:
+                    raise Exception(f'winner {winner} not found in game dated {date}')
 
             for p in players:
                 for key in p:
@@ -328,20 +335,20 @@ def parse_records(filepath):
                             for loser in eliminated:
                                 if loser not in simple_deck_names:
                                     raise Exception(f'loser {loser} not found in game dated {date}')
-                                if loser == winner:
-                                    raise Exception(f'winner {winner} eliminated in game dated {date}')
+                                if loser in winners:
+                                    raise Exception(f'winner {loser} eliminated in game dated {date}')
                         if 'scoops' in e:
                             scoops = e['scoops']
                             for loser in scoops:
                                 if loser not in simple_deck_names:
                                     raise Exception(f'salty scoops {loser} not found in game dated {date}')
-                                if loser == winner:
-                                    raise Exception(f'winner {winner} eliminated in game dated {date}')
+                                if loser in winners:
+                                    raise Exception(f'winner {loser} eliminated in game dated {date}')
 
             game_object = Game(
                 date,
                 list(map(lambda sdn: archideck_names[sdn], simple_deck_names)),
-                archideck_names[winner],
+                list(map(lambda wr: archideck_names[wr], winners)),
                 archideck_names,
                 eliminations
             )
@@ -447,14 +454,15 @@ def print_decks(decks, key):
     print()
 
 
-def print_wins(wins):
+def print_wins(games, wins):
     for p in [3, 4]:
         print(f'{p}-player games')
         print('player #\twins\twin%')
-        total = sum(wins[p].values())
+        total = len([g for g in games if len(g.decks) == p and parse_date(g.date) >= parse_date('2/2/2023')])
         for i in range(1, p+1):
             ws = wins[p][i]
             print(f'{i}\t{ws}\t{ws / total}')
+        print(f'total\t{total}')
 
 
 def parse_date(d):
@@ -648,7 +656,7 @@ def main():
     games, unique_decks, decks_by_names = parse_records(record_filepath)
     wins = update_record_results(games, unique_decks, decks_by_names)
     print_decks(unique_decks, key=alphabetical)
-    print_wins(wins)
+    print_wins(games, wins)
 
     # pods(unique_decks)
     # tiers(match_quality(unique_decks))
