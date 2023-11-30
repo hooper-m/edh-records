@@ -25,7 +25,7 @@ class Deck:
         self.games = []
         self.ranks = {
             'by_tbs': '',
-            'by_delta': '',
+            'by_wr_delta': '',
             'by_wrx1': '',
             'by_mmr': '',
             'by_speed': '',
@@ -33,7 +33,7 @@ class Deck:
         }
         self.rank_delta = {
             'by_tbs': '',
-            'by_delta': '',
+            'by_wr_delta': '',
             'by_wrx1': '',
             'by_mmr': '',
             'by_speed': '',
@@ -394,7 +394,7 @@ def calculate_ranks(decks):
                 -d.played,
                 -d.op_winrate
         ),
-        'by_delta': lambda d: (
+        'by_wr_delta': lambda d: (
                 -d.winrate_delta,
                 -d.played,
                 -d.op_winrate
@@ -428,8 +428,7 @@ def print_decks(decks, key):
               d.mmr.mu, d.mmr.sigma,
               d.ranks['by_exposure'], d.rank_delta['by_exposure'],
               d.ranks['by_mmr'], d.rank_delta['by_mmr'],
-              d.ranks['by_delta'], d.rank_delta['by_delta'],
-              d.ranks['by_tbs'], d.rank_delta['by_tbs'],
+              d.ranks['by_wr_delta'], d.rank_delta['by_wr_delta'],
               d.ranks['by_wrx1'], d.rank_delta['by_wrx1'],
               d.ranks['by_speed'], d.rank_delta['by_speed'],
               sep='\t'
@@ -440,8 +439,7 @@ def print_decks(decks, key):
              "\twrx1 ((win % + 1) x (op win % + 1))\tmmr\tsigma" \
              "\tBy exposure\tΔ" \
              "\tBy mmr\tΔ" \
-             "\tBy tiebreaks (win % delta, played, op win %)\tΔ" \
-             "\tBy tiebreaks (win %, played, op win %)\tΔ" \
+             "\tBy win % delta (played, op win %)\tΔ" \
              "\tBy wrx1\tΔ" \
              "\tBy speed\tΔ"
     print(header)
