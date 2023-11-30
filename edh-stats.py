@@ -344,6 +344,8 @@ def parse_records(filepath):
                                     raise Exception(f'salty scoops {loser} not found in game dated {date}')
                                 if loser in winners:
                                     raise Exception(f'winner {loser} eliminated in game dated {date}')
+                        if 'eliminated' not in e and 'scoops' not in e:
+                            raise Exception(f'losers not found in game dated {date}')
 
             game_object = Game(
                 date,
