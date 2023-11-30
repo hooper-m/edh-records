@@ -158,7 +158,7 @@ class Deck:
             else:
                 self.rank_delta[metric] = ('+' if delta > 0 else '') + str(delta)
         else:
-            self.rank_delta[metric] = 'New!'
+            self.rank_delta[metric] = '!'
         self.ranks[metric] = rank
 
     def calculate_metrics(self, decks_by_names):
@@ -268,7 +268,7 @@ class Game:
             decks_by_names[deck_names[idx]].mmr = rating
 
 
-def parse_records(filepath):
+def parse_records(filepath, until_date=None):
     decks_by_names = {}
     games = []
     with open(filepath, 'r') as f:
@@ -279,6 +279,8 @@ def parse_records(filepath):
     for record in records['games']:
         gs = record['games']
         date = record['date']
+        if until_date and parse_date(until_date) <= parse_date(date):
+            continue
 
         for game in gs:
             players = game['players']
@@ -532,6 +534,35 @@ def tiers(mqs):
     #     by_q = sorted(qs, key=lambda qq: -qq[0])
     #     _, best = by_q[0]
     #     print(f'{deck}\t{best}')
+    faves = {
+        deck: sorted(qq, key=lambda qqq: -qqq[0])[0][1]
+        for deck, qq in grid.items()
+    }
+    popularity = Counter(faves.values())
+    by_faves = {}
+    for d, f in faves.items():
+        if f not in by_faves:
+            by_faves[f] = []
+        by_faves[f].append(d)
+
+    by_faves_groups = [
+        [f] + sorted(ds)
+        for f, ds in by_faves.items()
+    ]
+
+    for group in by_faves_groups:
+        print(group)
+    for i in range(max(map(len, by_faves_groups))):
+        for group in by_faves_groups:
+            deck = ''
+            arch = ''
+            if i < len(group):
+                archideck = group[i]
+                deck, arch = archideck.split(' - ')
+            print(deck, end='\t')
+            print(arch, end='\t\t')
+        print()
+
     for deck, qs in grid.items():
         by_q = sorted(qs, key=lambda qq: -qq[0])
         _, best = by_q[0]
@@ -653,14 +684,14 @@ def main():
 
     record_filepath = './data/edh.json'
 
-    date = "4/19/2999"
-    games, unique_decks, decks_by_names = parse_records(record_filepath)
+    date = "11/26/2023"
+    games, unique_decks, decks_by_names = parse_records(record_filepath, until_date=date)
     wins = update_record_results(games, unique_decks, decks_by_names)
-    print_decks(unique_decks, key=alphabetical)
-    print_wins(games, wins)
+    # print_decks(unique_decks, key=alphabetical)
+    # print_wins(games, wins)
 
     # pods(unique_decks)
-    # tiers(match_quality(unique_decks))
+    tiers(match_quality(unique_decks))
     # exposure_tiers(unique_decks)
     # for d, r, q in match_quality(unique_decks):
     #     print(f'{d}\t{r}\t{q}')
