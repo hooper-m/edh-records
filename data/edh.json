@@ -52,7 +52,7 @@
               "deck": "Tuvasa"
             }
           ],
-          "winners": ["Tuvasa"]
+          "winner": "Tuvasa"
         },
         {
           "players": [
@@ -69,7 +69,7 @@
               "deck": "Tuvasa"
             }
           ],
-          "winners": ["Tuvasa"]
+          "winner": "Tuvasa"
         },
         {
           "players": [
@@ -86,7 +86,7 @@
               "deck": "Tuvasa"
             }
           ],
-          "winners": ["Alela, Artful Provocateur"]
+          "winner": "Alela, Artful Provocateur"
         },
         {
           "players": [
@@ -103,7 +103,7 @@
               "deck": "Sek'Kuar"
             }
           ],
-          "winners": ["Etrata"]
+          "winner": "Etrata"
         },
         {
           "players": [
@@ -120,7 +120,7 @@
               "deck": "Inalla"
             }
           ],
-          "winners": ["Muldrotha"]
+          "winner": "Muldrotha"
         }
       ]
     },
@@ -142,7 +142,7 @@
               "deck": "Erinis, Scion of Halaster"
             }
           ],
-          "winners": ["Kozilek"]
+          "winner": "Kozilek"
         },
         {
           "players": [
@@ -159,7 +159,7 @@
               "deck": "Animar"
             }
           ],
-          "winners": ["Animar"]
+          "winner": "Animar"
         },
         {
           "players": [
@@ -176,7 +176,7 @@
               "deck": "Animar"
             }
           ],
-          "winners": ["Kozilek"]
+          "winner": "Kozilek"
         },
         {
           "players": [
@@ -193,7 +193,7 @@
               "deck": "Animar"
             }
           ],
-          "winners": ["Alela, Artful Provocateur"]
+          "winner": "Alela, Artful Provocateur"
         },
         {
           "players": [
@@ -210,7 +210,7 @@
               "deck": "Rashmi"
             }
           ],
-          "winners": ["Rashmi"]
+          "winner": "Rashmi"
         },
         {
           "players": [
@@ -227,7 +227,7 @@
               "deck": "Feldon"
             }
           ],
-          "winners": ["Shorikai"]
+          "winner": "Shorikai"
         }
       ]
     },
@@ -253,7 +253,7 @@
               "deck": "Giada"
             }
           ],
-          "winners": ["Muldrotha"]
+          "winner": "Muldrotha"
         },
         {
           "players": [
@@ -274,7 +274,7 @@
               "deck": "Chainer"
             }
           ],
-          "winners": ["Liesa"]
+          "winner": "Liesa"
         },
         {
           "players": [
@@ -295,7 +295,7 @@
               "deck": "Esika"
             }
           ],
-          "winners": ["Alela, Artful Provocateur"]
+          "winner": "Alela, Artful Provocateur"
         }
       ]
     },
@@ -321,7 +321,7 @@
               "deck": "Omnath"
             }
           ],
-          "winners": ["Erinis, Scion of Halaster"]
+          "winner": "Erinis, Scion of Halaster"
         },
         {
           "players": [
@@ -342,7 +342,7 @@
               "deck": "Feldon"
             }
           ],
-          "winners": ["Kaalia"]
+          "winner": "Kaalia"
         },
         {
           "players": [
@@ -363,7 +363,7 @@
               "deck": "Jenson"
             }
           ],
-          "winners": ["Yidris"]
+          "winner": "Yidris"
         }
       ]
     },
@@ -385,7 +385,7 @@
               "deck": "Aegar"
             }
           ],
-          "winners": ["Inalla"]
+          "winner": "Inalla"
         },
         {
           "players": [
@@ -406,7 +406,7 @@
               "deck": "Mayael"
             }
           ],
-          "winners": ["Esika"]
+          "winner": "Esika"
         },
         {
           "players": [
@@ -427,7 +427,7 @@
               "deck": "Esika"
             }
           ],
-          "winners": ["Xenagos"]
+          "winner": "Xenagos"
         },
         {
           "players": [
@@ -448,7 +448,7 @@
               "deck": "Sefris"
             }
           ],
-          "winners": ["Alela, Artful Provocateur"]
+          "winner": "Alela, Artful Provocateur"
         },
         {
           "players": [
@@ -469,7 +469,7 @@
               "deck": "Omnath"
             }
           ],
-          "winners": ["Omnath"]
+          "winner": "Omnath"
         }
       ]
     },
@@ -491,7 +491,7 @@
               "deck": "Teneb"
             }
           ],
-          "winners": ["Feather"]
+          "winner": "Feather"
         },
         {
           "players": [
@@ -508,7 +508,7 @@
               "deck": "Go-Shintai"
             }
           ],
-          "winners": ["Trostani"]
+          "winner": "Trostani"
         }
       ]
     },
@@ -534,7 +534,7 @@
               "deck": "Go-Shintai"
             }
           ],
-          "winners": ["Avacyn"]
+          "winner": "Avacyn"
         },
         {
           "players": [
@@ -555,7 +555,7 @@
               "deck": "Linvala"
             }
           ],
-          "winners": ["Linvala"]
+          "winner": "Linvala"
         },
         {
           "players": [
@@ -576,7 +576,7 @@
               "deck": "Yennett"
             }
           ],
-          "winners": ["Muldrotha"]
+          "winner": "Muldrotha"
         },
         {
           "players": [
@@ -597,7 +597,7 @@
               "deck": "Alela, Artful Provocateur"
             }
           ],
-          "winners": ["Zirilan"]
+          "winner": "Zirilan"
         }
       ]
     },
@@ -624,7 +624,7 @@
               "architect": "June"
             }
           ],
-          "winners": ["Omnath"],
+          "winner": "Omnath",
           "eliminations": {
             "8": [{
               "eliminator": "Omnath",
@@ -656,7 +656,7 @@
               "deck": "Muldrotha"
             }
           ],
-          "winners": ["Kaalia"],
+          "winner": "Kaalia",
           "eliminations": {
             "5": [{
               "eliminator": "Kaalia",
@@ -698,7 +698,7 @@
               "deck": "Edgar"
             }
           ],
-          "winners": ["Yidris"],
+          "winner": "Yidris",
           "eliminations": {
             "6": [{
               "eliminator": "Yidris",
@@ -731,7 +731,7 @@
               "architect": "June"
             }
           ],
-          "winners": ["Sharuum"],
+          "winner": "Sharuum",
           "eliminations": {
             "6": [{
               "eliminator": "Sharuum",
@@ -766,7 +766,7 @@
               "deck": "Maga"
             }
           ],
-          "winners": ["Alela, Artful Provocateur"],
+          "winner": "Alela, Artful Provocateur",
           "eliminations": {
             "12": [{
               "eliminator": "Alela, Artful Provocateur",
@@ -797,7 +797,7 @@
               "deck": "Muldrotha"
             }
           ],
-          "winners": ["Yennett"],
+          "winner": "Yennett",
           "eliminations": {
             "11": [{
               "eliminator": "Yennett",
@@ -838,7 +838,7 @@
               "deck": "Florian"
             }
           ],
-          "winners": ["Florian"],
+          "winner": "Florian",
           "eliminations": {
             "7": [{
               "eliminator": "Florian",
@@ -869,7 +869,7 @@
               "deck": "Inalla"
             }
           ],
-          "winners": ["Chainer"],
+          "winner": "Chainer",
           "eliminations": {
             "10": [{
               "eliminator": "Chainer",
@@ -905,7 +905,7 @@
               "deck": "The First Sliver"
             }
           ],
-          "winners": ["Lonis"],
+          "winner": "Lonis",
           "eliminations": {
             "7": [{
               "eliminator": "Lonis",
@@ -936,7 +936,7 @@
               "deck": "Liesa"
             }
           ],
-          "winners": ["Omnath"],
+          "winner": "Omnath",
           "eliminations": {
             "5": [{
               "eliminator": "Omnath",
@@ -967,7 +967,7 @@
               "deck": "Liesa"
             }
           ],
-          "winners": ["Feather"],
+          "winner": "Feather",
           "eliminations": {
             "14": [
               {
@@ -1006,7 +1006,7 @@
               "deck": "Lonis"
             }
           ],
-          "winners": ["Lonis"],
+          "winner": "Lonis",
           "eliminations": {
             "8": [
               {
@@ -1034,7 +1034,7 @@
               "deck": "Rashmi"
             }
           ],
-          "winners": ["Alela, Artful Provocateur"],
+          "winner": "Alela, Artful Provocateur",
           "eliminations": {
             "5": [
               {
@@ -1062,7 +1062,7 @@
               "deck": "Omnath"
             }
           ],
-          "winners": ["Rashmi"],
+          "winner": "Rashmi",
           "eliminations": {
             "7": [
               {
@@ -1090,7 +1090,7 @@
               "deck": "Ruhan"
             }
           ],
-          "winners": ["Sek'Kuar"],
+          "winner": "Sek'Kuar",
           "eliminations": {
             "6": [
               {
@@ -1126,7 +1126,7 @@
               "architect": "Hooper"
             }
           ],
-          "winners": ["Gwyn"],
+          "winner": "Gwyn",
           "eliminations": {
             "5": [
               {
@@ -1162,7 +1162,7 @@
               "deck": "Gwyn"
             }
           ],
-          "winners": ["Chainer"],
+          "winner": "Chainer",
           "eliminations": {
             "6": [
               {
@@ -1197,7 +1197,7 @@
               "deck": "Muldrotha"
             }
           ],
-          "winners": ["Borborygmos"],
+          "winner": "Borborygmos",
           "eliminations": {
             "24": [
               {
@@ -1234,7 +1234,7 @@
               "deck": "Inalla"
             }
           ],
-          "winners": ["Cormela"],
+          "winner": "Cormela",
           "eliminations": {
             "7": [
               {
@@ -1281,7 +1281,7 @@
               "deck": "Cormela"
             }
           ],
-          "winners": ["Muldrotha"],
+          "winner": "Muldrotha",
           "eliminations": {
             "8": [
               {
@@ -1314,7 +1314,7 @@
               "deck": "The First Sliver"
             }
           ],
-          "winners": ["Teysa"],
+          "winner": "Teysa",
           "eliminations": {
             "8": [
               {
@@ -1352,7 +1352,7 @@
               "deck": "Muldrotha"
             }
           ],
-          "winners": ["Muldrotha"],
+          "winner": "Muldrotha",
           "eliminations": {
             "10": [
               {
@@ -1390,7 +1390,7 @@
               "deck": "Ognis"
             }
           ],
-          "winners": ["Kaalia"],
+          "winner": "Kaalia",
           "eliminations": {
             "7": [
               {
@@ -1441,7 +1441,7 @@
               "deck": "Chainer"
             }
           ],
-          "winners": ["Chainer"],
+          "winner": "Chainer",
           "eliminations": {
             "10": [
               {
@@ -1480,7 +1480,7 @@
               "deck": "Jasmine"
             }
           ],
-          "winners": ["Jasmine"],
+          "winner": "Jasmine",
           "eliminations": {
             "8": [
               {
@@ -1528,7 +1528,7 @@
               "architect": "Precon"
             }
           ],
-          "winners": ["Ur-Dragon"],
+          "winner": "Ur-Dragon",
           "eliminations": {
             "6": [
               {
@@ -1571,7 +1571,7 @@
               "deck": "Sefris"
             }
           ],
-          "winners": ["Obeka"],
+          "winner": "Obeka",
           "eliminations": {
             "8": [
               {
@@ -1618,7 +1618,7 @@
               "deck": "The Golden Throne"
             }
           ],
-          "winners": ["Cormela"],
+          "winner": "Cormela",
           "eliminations": {
             "12": [
               {
@@ -1670,7 +1670,7 @@
               "deck": "Kaalia"
             }
           ],
-          "winners": ["Sharuum"],
+          "winner": "Sharuum",
           "eliminations": {
             "8": [
               {
@@ -1703,7 +1703,7 @@
               "deck": "Yennett"
             }
           ],
-          "winners": ["Mavinda"],
+          "winner": "Mavinda",
           "eliminations": {
             "12": [
               {
@@ -1736,7 +1736,7 @@
               "deck": "Ognis"
             }
           ],
-          "winners": ["Lonis"],
+          "winner": "Lonis",
           "eliminations": {
             "6": [
               {
@@ -1777,7 +1777,7 @@
               "deck": "Muldrotha"
             }
           ],
-          "winners": ["Skullbriar"],
+          "winner": "Skullbriar",
           "eliminations": {
             "7": [
               {
@@ -1805,7 +1805,7 @@
               "deck": "Skullbriar"
             }
           ],
-          "winners": ["Muldrotha"],
+          "winner": "Muldrotha",
           "eliminations": {
             "12": [
               {
@@ -1842,7 +1842,7 @@
               "deck": "Magnus"
             }
           ],
-          "winners": ["Magnus"],
+          "winner": "Magnus",
           "eliminations": {
             "7": [
               {
@@ -1885,7 +1885,7 @@
               "deck": "Magnus"
             }
           ],
-          "winners": ["Jared"],
+          "winner": "Jared",
           "eliminations": {
             "9": [
               {
@@ -1917,7 +1917,7 @@
               "deck": "Tivit"
             }
           ],
-          "winners": ["Cormela"],
+          "winner": "Cormela",
           "eliminations": {
             "8": [
               {
@@ -1950,7 +1950,7 @@
               "deck": "Giada"
             }
           ],
-          "winners": ["Tivit"],
+          "winner": "Tivit",
           "eliminations": {
             "8": [
               {
@@ -1995,7 +1995,7 @@
               "deck": "Sek'Kuar"
             }
           ],
-          "winners": ["Solphim"],
+          "winner": "Solphim",
           "eliminations": {
             "7": [
               {
@@ -2028,7 +2028,7 @@
               "deck": "Solphim"
             }
           ],
-          "winners": ["Yidris"],
+          "winner": "Yidris",
           "eliminations": {
             "6": [
               {
@@ -2061,7 +2061,7 @@
               "deck": "Muldrotha"
             }
           ],
-          "winners": ["Mayael"],
+          "winner": "Mayael",
           "eliminations": {
             "7": [
               {
@@ -2099,7 +2099,7 @@
               "deck": "Muldrotha"
             }
           ],
-          "winners": ["Solphim"],
+          "winner": "Solphim",
           "eliminations": {
             "8": [
               {
@@ -2144,7 +2144,7 @@
               "deck": "Solphim"
             }
           ],
-          "winners": ["Omnath"],
+          "winner": "Omnath",
           "eliminations": {
             "9": [
               {
@@ -2182,7 +2182,7 @@
               "deck": "Tivit"
             }
           ],
-          "winners": ["Tivit"],
+          "winner": "Tivit",
           "eliminations": {
             "8": [
               {
@@ -2222,7 +2222,7 @@
               "deck": "Yennett"
             }
           ],
-          "winners": ["Magnus"],
+          "winner": "Magnus",
           "eliminations": {
             "6": [
               {
@@ -2263,7 +2263,7 @@
               "deck": "Muldrotha"
             }
           ],
-          "winners": ["Yidris"],
+          "winner": "Yidris",
           "eliminations": {
             "7": [
               {
@@ -2301,7 +2301,7 @@
               "deck": "Nethroi"
             }
           ],
-          "winners": ["Inalla"],
+          "winner": "Inalla",
           "eliminations": {
             "9": [
               {
@@ -2348,7 +2348,7 @@
               "deck": "Jasmine"
             }
           ],
-          "winners": ["Ur-Dragon"],
+          "winner": "Ur-Dragon",
           "eliminations": {
             "9": [
               {
@@ -2394,7 +2394,7 @@
               "deck": "Phage"
             }
           ],
-          "winners": ["Saruman"],
+          "winner": "Saruman",
           "eliminations": {
             "5": [
               {
@@ -2435,7 +2435,7 @@
               "deck": "Cormela"
             }
           ],
-          "winners": ["Xenagos"],
+          "winner": "Xenagos",
           "eliminations": {
             "8": [
               {
@@ -2476,7 +2476,7 @@
               "deck": "Nekusar"
             }
           ],
-          "winners": ["Jabari"],
+          "winner": "Jabari",
           "eliminations": {
             "8": [
               {
@@ -2517,7 +2517,7 @@
               "deck": "Erinis, Scion of Halaster"
             }
           ],
-          "winners": ["Erinis, Scion of Halaster"],
+          "winner": "Erinis, Scion of Halaster",
           "eliminations": {
             "9": [
               {
@@ -2545,7 +2545,7 @@
               "deck": "Nethroi"
             }
           ],
-          "winners": ["Storvald"],
+          "winner": "Storvald",
           "eliminations": {
             "9": [
               {
@@ -2580,7 +2580,7 @@
               "deck": "Storvald"
             }
           ],
-          "winners": ["Teneb"],
+          "winner": "Teneb",
           "eliminations": {
             "11": [
               {
@@ -2624,7 +2624,7 @@
               "deck": "Elsha"
             }
           ],
-          "winners": ["Sek'Kuar"],
+          "winner": "Sek'Kuar",
           "eliminations": {
             "11": [
               {
@@ -2664,7 +2664,7 @@
               "deck": "Yennett"
             }
           ],
-          "winners": ["Tahngarth"],
+          "winner": "Tahngarth",
           "eliminations": {
             "9": [
               {
@@ -2710,7 +2710,7 @@
               "deck": "Kaalia"
             }
           ],
-          "winners": ["Erinis, Scion of Halaster"],
+          "winner": "Erinis, Scion of Halaster",
           "eliminations": {
             "8": [
               {
@@ -2753,7 +2753,7 @@
               "deck": "Tahngarth"
             }
           ],
-          "winners": ["Nethroi"],
+          "winner": "Nethroi",
           "eliminations": {
             "8": [
               {
@@ -2793,7 +2793,7 @@
               "deck": "Chainer"
             }
           ],
-          "winners": ["Borborygmos"],
+          "winner": "Borborygmos",
           "eliminations": {
             "9": [
               {
@@ -2833,7 +2833,7 @@
               "deck": "Lonis"
             }
           ],
-          "winners": ["Xenagos"],
+          "winner": "Xenagos",
           "eliminations": {
             "7": [
               {
@@ -2879,7 +2879,7 @@
               "deck": "Yennett"
             }
           ],
-          "winners": ["Zaxara"],
+          "winner": "Zaxara",
           "eliminations": {
             "11": [
               {
@@ -2907,7 +2907,7 @@
               "deck": "Zaxara"
             }
           ],
-          "winners": ["Olivia"],
+          "winner": "Olivia",
           "eliminations": {
             "8": [
               {
@@ -2942,7 +2942,7 @@
               "deck": "Olivia"
             }
           ],
-          "winners": ["Ur-Dragon"],
+          "winner": "Ur-Dragon",
           "eliminations": {
             "10": [
               {
@@ -2975,7 +2975,7 @@
               "deck": "Tuvasa"
             }
           ],
-          "winners": ["Tuvasa"],
+          "winner": "Tuvasa",
           "eliminations": {
             "5": [
               {
@@ -3010,7 +3010,7 @@
               "deck": "Lonis"
             }
           ],
-          "winners": ["Uro"],
+          "winner": "Uro",
           "eliminations": {
             "6": [
               {
@@ -3038,7 +3038,7 @@
               "deck": "Uro"
             }
           ],
-          "winners": ["Uro"],
+          "winner": "Uro",
           "eliminations": {
             "6": [
               {
@@ -3066,7 +3066,7 @@
               "deck": "Muldrotha"
             }
           ],
-          "winners": ["Borborygmos"],
+          "winner": "Borborygmos",
           "eliminations": {
             "7": [
               {
@@ -3101,7 +3101,7 @@
               "deck": "Kathril"
             }
           ],
-          "winners": ["Muldrotha"],
+          "winner": "Muldrotha",
           "eliminations": {
             "9": [
               {
@@ -3136,7 +3136,7 @@
               "deck": "Olivia"
             }
           ],
-          "winners": ["Kathril"],
+          "winner": "Kathril",
           "eliminations": {
             "10": [
               {
@@ -3176,7 +3176,7 @@
               "deck": "Alela, Artful Provocateur"
             }
           ],
-          "winners": ["Alela, Artful Provocateur"],
+          "winner": "Alela, Artful Provocateur",
           "eliminations": {
             "9": [
               {
@@ -3204,7 +3204,7 @@
               "deck": "Mavinda"
             }
           ],
-          "winners": ["Rashmi"],
+          "winner": "Rashmi",
           "eliminations": {
             "9": [
               {
@@ -3239,7 +3239,7 @@
               "deck": "Inalla"
             }
           ],
-          "winners": ["Mavinda"],
+          "winner": "Mavinda",
           "eliminations": {
             "8": [
               {
@@ -3274,7 +3274,7 @@
               "deck": "Gwyn"
             }
           ],
-          "winners": ["Tuvasa"],
+          "winner": "Tuvasa",
           "eliminations": {
             "6": [
               {
@@ -3314,7 +3314,7 @@
               "deck": "Uro"
             }
           ],
-          "winners": ["Animar"],
+          "winner": "Animar",
           "eliminations": {
             "8": [
               {
@@ -3346,7 +3346,7 @@
               "deck": "Gwyn"
             }
           ],
-          "winners": ["Trostani"],
+          "winner": "Trostani",
           "eliminations": {
             "8": [
               {
@@ -3386,7 +3386,7 @@
               "deck": "Maga"
             }
           ],
-          "winners": ["Nethroi"],
+          "winner": "Nethroi",
           "eliminations": {
             "7": [
               {
@@ -3427,7 +3427,7 @@
               "deck": "Avacyn"
             }
           ],
-          "winners": ["Avacyn"],
+          "winner": "Avacyn",
           "eliminations": {
             "9": [
               {
@@ -3462,7 +3462,7 @@
               "deck": "Chatterfang"
             }
           ],
-          "winners": ["Cormela"],
+          "winner": "Cormela",
           "eliminations": {
             "7": [
               {
@@ -3490,7 +3490,7 @@
               "deck": "Jared"
             }
           ],
-          "winners": ["Giada"],
+          "winner": "Giada",
           "eliminations": {
             "11": [
               {
@@ -3534,7 +3534,7 @@
               "deck": "Angus Mackenzie"
             }
           ],
-          "winners": ["The Scarab God"],
+          "winner": "The Scarab God",
           "eliminations": {
             "9": [
               {
@@ -3574,7 +3574,7 @@
               "deck": "The Scarab God"
             }
           ],
-          "winners": ["Uro"],
+          "winner": "Uro",
           "eliminations": {
             "9": [
               {
@@ -3607,7 +3607,7 @@
               "deck": "Kozilek"
             }
           ],
-          "winners": ["Xenagos"],
+          "winner": "Xenagos",
           "eliminations": {
             "5": [
               {
@@ -3640,7 +3640,7 @@
               "deck": "Xenagos"
             }
           ],
-          "winners": ["Kozilek"],
+          "winner": "Kozilek",
           "eliminations": {
             "11": [
               {
@@ -3684,7 +3684,7 @@
               "architect": "Precon"
             }
           ],
-          "winners": ["Hakbal"],
+          "winner": "Hakbal",
           "eliminations": {
             "8": [
               {
@@ -3714,7 +3714,7 @@
               "architect": "Hooper"
             }
           ],
-          "winners": ["Miirym"],
+          "winner": "Miirym",
           "eliminations": {
             "7": [
               {
@@ -3744,7 +3744,7 @@
               "architect": "Hooper"
             }
           ],
-          "winners": ["Ruhan"],
+          "winner": "Ruhan",
           "eliminations": {
             "5": [
               {
@@ -3777,7 +3777,7 @@
               "deck": "Etrata"
             }
           ],
-          "winners": ["Thraximundar"],
+          "winner": "Thraximundar",
           "eliminations": {
             "8": [
               {
@@ -3805,7 +3805,7 @@
               "deck": "Thraximundar"
             }
           ],
-          "winners": ["Alela, Artful Provocateur"],
+          "winner": "Alela, Artful Provocateur",
           "eliminations": {
             "10": [
               {
@@ -3834,7 +3834,7 @@
               "deck": "Nethroi"
             }
           ],
-          "winners": ["Shorikai"],
+          "winner": "Shorikai",
           "eliminations": {
             "8": [
               {
@@ -3862,7 +3862,7 @@
               "deck": "Zirilan"
             }
           ],
-          "winners": ["Zirilan"],
+          "winner": "Zirilan",
           "eliminations": {
             "8": [
               {
@@ -3895,7 +3895,7 @@
               "deck": "Alela, Cunning Conqueror"
             }
           ],
-          "winners": ["Etrata"],
+          "winner": "Etrata",
           "eliminations": {
             "8": [
               {
@@ -3934,14 +3934,11 @@
               "deck": "Miirym"
             }
           ],
-          "winners": [
-            "Saruman",
-            "Yennett"
-          ],
+          "winner": "Yennet",
           "eliminations": {
             "10": [
               {
-                "salty": "Yennett",
+                "eliminator": "Yennett",
                 "scoops": [
                   "Miirym"
                 ]
@@ -3949,7 +3946,7 @@
             ],
             "12": [
               {
-                "salty": "Yennett",
+                "eliminator": "Yennett",
                 "scoops": [
                   "Nethroi"
                 ]
@@ -3972,7 +3969,7 @@
               "deck": "Esika"
             }
           ],
-          "winners": ["Esika"],
+          "winner": "Esika",
           "eliminations": {
             "8": [
               {
@@ -3982,7 +3979,7 @@
                 ]
               },
               {
-                "eliminator": "Esika",
+                "eliminator": "Etrata",
                 "eliminated": [
                   "Gabriel"
                 ]

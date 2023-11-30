@@ -204,9 +204,15 @@ class Game:
             for deck_name in archideck_names.values()
         }
 
+        self.scoops_by_deck = {
+            deck_name: {}
+            for deck_name in archideck_names.values()
+        }
+
         assists_by_deck = Counter({
             deck: 0
             for deck in decks_by_turn_order
+            # if deck not in winners
             if deck != winner
         })
 
@@ -214,7 +220,10 @@ class Game:
             turn = int(t)
             for e in es:
                 eliminator = archideck_names[e['eliminator']]
-                eliminated = list(map(lambda l: archideck_names[l], e['eliminated']))
+                eliminated = list(map(
+                    lambda l: archideck_names[l],
+                    ([] if 'eliminated' not in e else e['eliminated']) + ([] if 'scoops' not in e else e['scoops'])
+                ))
                 self.elims_by_deck[eliminator][turn] = eliminated
                 if eliminator != winner:
                     assists_by_deck[eliminator] += len(eliminated)
@@ -222,6 +231,7 @@ class Game:
         if not assists_by_deck.total():
             return
 
+        # self._rankings = [sorted(winners, key=decks_by_turn_order.index)]
         self._rankings = [[winner]]
 
         decks_by_assists = [[], [], []]
@@ -316,12 +326,20 @@ def parse_records(filepath):
                         eliminator = e['eliminator']
                         if eliminator not in simple_deck_names:
                             raise Exception(f'eliminator {eliminator} not found in game dated {date}')
-                        eliminated = e['eliminated']
-                        for loser in eliminated:
-                            if loser not in simple_deck_names:
-                                raise Exception(f'loser {loser} not found in game dated {date}')
-                            if loser == winner:
-                                raise Exception(f'winner {winner} eliminated in game dated {date}')
+                        if 'eliminated' in e:
+                            eliminated = e['eliminated']
+                            for loser in eliminated:
+                                if loser not in simple_deck_names:
+                                    raise Exception(f'loser {loser} not found in game dated {date}')
+                                if loser == winner:
+                                    raise Exception(f'winner {winner} eliminated in game dated {date}')
+                        if 'scoops' in e:
+                            scoops = e['scoops']
+                            for loser in scoops:
+                                if loser not in simple_deck_names:
+                                    raise Exception(f'salty scoops {loser} not found in game dated {date}')
+                                if loser == winner:
+                                    raise Exception(f'winner {winner} eliminated in game dated {date}')
 
             game_object = Game(
                 date,
