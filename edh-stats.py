@@ -479,8 +479,10 @@ def partition(function, iterable):
 
 def match_quality(decks, _print=False):
     env = trueskill.global_env()
+    retired = ['Kess', 'Inalla', 'Teferi']
     filter_by_author = filter(lambda dck: dck.architect in ['June', 'Tony', 'Hooper', 'Pham', 'Rachael'], decks)
-    filter_by_played = filter(lambda dck: dck.played > 2, filter_by_author)
+    filter_retired = filter(lambda dck: dck.simple_name not in retired, filter_by_author)
+    filter_by_played = filter(lambda dck: dck.played > 2, filter_retired)
     decks = sorted(filter_by_played, key=lambda dck: dck.name)
     rev = [r for r in reversed(decks)]
     mqs = []
@@ -505,6 +507,18 @@ def match_quality(decks, _print=False):
     return mqs
 
 
+def mqs_to_grid(mqs):
+    grid = {}
+    for d, r, q in mqs:
+        if d not in grid:
+            grid[d] = []
+        if r not in grid:
+            grid[r] = []
+        grid[d].append((q, r))
+        grid[r].append((q, d))
+    return grid
+
+
 # matchmaking:
 #   for each deck,
 #       find best deck
@@ -517,51 +531,11 @@ def match_quality(decks, _print=False):
 #               add deck to best's group
 #       else if more than 5 groups,
 #           merge groups
-def tiers(mqs):
-    grid = {}
+def tiers_jank(grid):
     groups_by_deck = {}
     groups = []
     chaelela = 'Alela, Artful Provocateur - Rachael'
     chaeldrotha = 'Muldrotha - Rachael'
-    for d, r, q in mqs:
-        if d not in grid:
-            grid[d] = []
-        if r not in grid:
-            grid[r] = []
-        grid[d].append((q, r))
-        grid[r].append((q, d))
-    # for deck, qs in grid.items():
-    #     by_q = sorted(qs, key=lambda qq: -qq[0])
-    #     _, best = by_q[0]
-    #     print(f'{deck}\t{best}')
-    faves = {
-        deck: sorted(qq, key=lambda qqq: -qqq[0])[0][1]
-        for deck, qq in grid.items()
-    }
-    popularity = Counter(faves.values())
-    by_faves = {}
-    for d, f in faves.items():
-        if f not in by_faves:
-            by_faves[f] = []
-        by_faves[f].append(d)
-
-    by_faves_groups = [
-        [f] + sorted(ds)
-        for f, ds in by_faves.items()
-    ]
-
-    for group in by_faves_groups:
-        print(group)
-    for i in range(max(map(len, by_faves_groups))):
-        for group in by_faves_groups:
-            deck = ''
-            arch = ''
-            if i < len(group):
-                archideck = group[i]
-                deck, arch = archideck.split(' - ')
-            print(deck, end='\t')
-            print(arch, end='\t\t')
-        print()
 
     for deck, qs in grid.items():
         by_q = sorted(qs, key=lambda qq: -qq[0])
@@ -590,10 +564,46 @@ def tiers(mqs):
             for d in best_group_list:
                 groups_by_deck[d] = group
     sorted_groups = [sorted(g) for g in groups]
-    for group in sorted_groups:
+    print_tier_groups(sorted_groups)
+
+
+def tiers(mqs):
+    grid = mqs_to_grid(mqs)
+    # for deck, qs in grid.items():
+    #     by_q = sorted(qs, key=lambda qq: -qq[0])
+    #     _, best = by_q[0]
+    #     print(f'{deck}\t{best}')
+    faves = {
+        deck: sorted(qq, key=lambda qqq: -qqq[0])[0][1]
+        for deck, qq in grid.items()
+    }
+    popularity = Counter(faves.values())
+    by_faves = {}
+    for d, f in faves.items():
+        if f not in by_faves:
+            by_faves[f] = []
+        by_faves[f].append(d)
+
+    groups = [
+        [f] + sorted(ds)
+        for f, ds in by_faves.items()
+    ]
+    return groups
+
+
+def print_tier_groups_graph(groups):
+    print('digraph G {')
+    for group in groups:
+        for deck in group[1:]:
+            print(f'\t\"{deck}\" -> \"{group[0]}\"')
+    print('}')
+
+
+def print_tier_groups(groups):
+    for group in groups:
         print(group)
-    for i in range(max(map(len, sorted_groups))):
-        for group in sorted_groups:
+    for i in range(max(map(len, groups))):
+        for group in groups:
             deck = ''
             arch = ''
             if i < len(group):
@@ -676,6 +686,9 @@ def exposure_tiers(decks):
         print(f'{deck}\t{tier}')
 
 
+
+
+
 def main():
     trueskill.setup(draw_probability=0.001)
 
@@ -691,7 +704,8 @@ def main():
     # print_wins(games, wins)
 
     # pods(unique_decks)
-    tiers(match_quality(unique_decks))
+    t = tiers(match_quality(unique_decks))
+    print_tier_groups_graph(t)
     # exposure_tiers(unique_decks)
     # for d, r, q in match_quality(unique_decks):
     #     print(f'{d}\t{r}\t{q}')
