@@ -710,7 +710,7 @@ def build_pods(decks):
             ops = [d for d in decks if deck.name != d.name and d.played < max_games_played]
             random.shuffle(ops)
             pod_size = min(random.randint(3, 4), len(ops))
-            if not pod_size:
+            if pod_size < 3:
                 break
             pod = [deck]
             while len(pod) < pod_size:
