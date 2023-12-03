@@ -1,11 +1,14 @@
 import datetime
 import json
+import math
 import queue
+import random
 import statistics
 from collections import Counter
 
 import trueskill
 from trueskill import Rating, rate
+from trueskill.backends import cdf
 
 
 class Deck:
@@ -377,6 +380,10 @@ def update_record_results(games, unique_decks, decks_by_names):
         4: Counter()
     }
 
+    if len(games) == 1:
+        update(games)
+        return wins_by_turn_order
+
     last_date = games[-1].date
     past_games, new_games = partition(lambda g: g.date != last_date, games)
 
@@ -686,6 +693,81 @@ def exposure_tiers(decks):
         print(f'{deck}\t{tier}')
 
 
+def win_probability(a, b):
+    env = trueskill.global_env()
+    deltaMu = sum([x.mu for x in a]) - sum([x.mu for x in b])
+    sumSigma = sum([x.sigma ** 2 for x in a]) + sum([x.sigma ** 2 for x in b])
+    playerCount = len(a) + len(b)
+    denominator = math.sqrt(playerCount * (trueskill.BETA * trueskill.BETA) + sumSigma)
+    return env.cdf(deltaMu / denominator)
+
+
+def build_pods(decks):
+    decks = sorted(decks, key=lambda d: -d.played)
+    max_games_played = decks[0].played
+    for deck in decks[1:]:
+        while deck.played < max_games_played:
+            ops = [d for d in decks if deck.name != d.name and d.played < max_games_played]
+            random.shuffle(ops)
+            pod_size = min(random.randint(3, 4), len(ops))
+            if not pod_size:
+                break
+            pod = [deck]
+            while len(pod) < pod_size:
+                pod.append(ops.pop())
+            yield pod
+
+
+def sim(unique_decks, decks_by_names):
+    date = '12/2/2023'
+    for pod in build_pods(unique_decks):
+        random.shuffle(pod)
+        names_in_pod_order = [dck.name for dck in pod]
+        print(names_in_pod_order)
+
+        winrates = {}
+        remaining = set(pod)
+        eliminations = {}
+        for d in pod:
+            wrs = []
+            for o in pod:
+                if d == o:
+                    continue
+                wrs.append((o, win_probability((d.mmr,), (o.mmr,))))
+            winrates[d] = sorted(wrs, key=lambda owr: -owr[1])
+        turn = min(map(lambda dck: dck.get_fastest_win() if type(dck.get_fastest_win()) is int else 100, pod))
+        while len(remaining) > 1:
+            eliminations[turn] = []
+            elims_this_turn = {}
+            for d in pod:
+                if d not in remaining:
+                    continue
+                for o, wr in winrates[d]:
+                    if o not in remaining:
+                        continue
+                    result = random.random()
+                    if result < wr:
+                        if d not in elims_this_turn:
+                            elims_this_turn[d.simple_name] = []
+                        elims_this_turn[d.simple_name].append(o.simple_name)
+                        remaining.remove(o)
+            for eliminator, eliminated in elims_this_turn.items():
+                eliminations[turn].append({
+                    'eliminator': eliminator,
+                    'eliminated': eliminated
+                })
+            turn += 1
+        game = Game(
+            date,
+            [dck.name for dck in pod],
+            [dck.name for dck in remaining],
+            {dck.simple_name: dck.name for dck in pod},
+            eliminations
+        )
+        update_record_results([game], unique_decks, decks_by_names)
+        print(list(remaining)[0].name)
+        print(eliminations)
+        print()
 
 
 
@@ -704,8 +786,13 @@ def main():
     # print_wins(games, wins)
 
     # pods(unique_decks)
+
+    random.seed(8675309)
+    sim(unique_decks, decks_by_names)
+
     t = tiers(match_quality(unique_decks))
     print_tier_groups_graph(t)
+
     # exposure_tiers(unique_decks)
     # for d, r, q in match_quality(unique_decks):
     #     print(f'{d}\t{r}\t{q}')
