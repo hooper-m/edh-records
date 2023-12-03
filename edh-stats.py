@@ -715,6 +715,12 @@ def build_pods(decks):
             pod = [deck]
             while len(pod) < pod_size:
                 pod.append(ops.pop())
+
+            # pod_names = [d.name for d in pod]
+
+            if Counter([dd.simple_name for dd in pod]).most_common(1)[0][1] > 1:
+                continue
+
             yield pod
 
 
@@ -768,7 +774,6 @@ def sim(unique_decks, decks_by_names):
         print(list(remaining)[0].name)
         print(eliminations)
         print()
-
 
 
 def main():
