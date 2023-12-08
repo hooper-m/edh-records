@@ -164,13 +164,15 @@ class Deck:
             self.rank_delta[metric] = '!'
         self.ranks[metric] = rank
 
-    def calculate_metrics(self, decks_by_names):
+    def calculate_metrics(self, decks_by_names, wins_by_turn_order):
         avg_n_players = statistics.mean(
             map(lambda game: len(game.decks), self.games)
         )
         self.winrate = self.wins / self.played
         self.expected_winrate = 1 / avg_n_players
         self.winrate_delta = self.winrate - self.expected_winrate
+
+        towr = self.turn_order_expected_winrate(wins_by_turn_order)
 
         if len(self.wins_by_turn):
             self._avg_win_turn = statistics.mean(self.wins_by_turn.elements())
@@ -186,6 +188,43 @@ class Deck:
         self.op_winrate = op_wins / op_played
 
         self.wrx1 = (self.winrate + 1) * (self.op_winrate + 1)
+
+    def turn_order_expected_winrate(self, wins_by_turn_order):
+        turn_position_counts = {
+            3: Counter(),
+            4: Counter(),
+        }
+
+        pod_size3 = 0
+        pod_size4 = 0
+        total_games = len(self.games)
+
+        for game in self.games:
+            if parse_date(game.date) >= parse_date('2/2/2023'):
+                pod_size = len(game.decks)
+                if pod_size == 3:
+                    pod_size3 += 1
+                elif pod_size == 4:
+                    pod_size4 += 1
+                else:
+                    Exception(f'Game with pod size {pod_size} dated {game.date}')
+                turn_position = game.decks.index(self.name) + 1
+                turn_position_counts[pod_size][turn_position] += 1
+
+        turn_position_rates = {
+            pod_size: {
+                turn_position: count / counts.total()
+                for turn_position, count in counts.items()
+            }
+            for pod_size, counts in turn_position_counts.items()
+        }
+
+        pod_size3_ewr = sum(map(lambda pos: turn_position_rates[3][pos] * wins_by_turn_order[3][pos], range(1, 4)))
+        pod_size4_ewr = sum(map(lambda pos: turn_position_rates[4][pos] * wins_by_turn_order[4][pos], range(1, 5)))
+
+
+
+        print('hi')
 
 
 class Game:
@@ -255,8 +294,10 @@ class Game:
 
     def update_results(self, decks_by_names, wins_by_turn_order):
         if parse_date(self.date) >= parse_date('2/2/2023'):
+            pod_size = len(self.decks)
+            wins_by_turn_order[pod_size]['total'] += 1
             for winner in self.winners:
-                wins_by_turn_order[len(self.decks)][self.decks.index(winner) + 1] += 1
+                wins_by_turn_order[pod_size][self.decks.index(winner) + 1] += 1
 
         for deck_name in self.decks:
             deck = decks_by_names[deck_name]
@@ -372,7 +413,7 @@ def update_record_results(games, unique_decks, decks_by_names):
 
         ds = [d for d in unique_decks if predicate(d)]
         for d in ds:
-            d.calculate_metrics(decks_by_names)
+            d.calculate_metrics(decks_by_names, wins_by_turn_order)
         calculate_ranks(ds)
 
     wins_by_turn_order = {
@@ -463,11 +504,11 @@ def print_decks(decks, key):
     print()
 
 
-def print_wins(games, wins):
+def print_wins(wins):
     for p in [3, 4]:
         print(f'{p}-player games')
         print('player #\twins\twin%')
-        total = len([g for g in games if len(g.decks) == p and parse_date(g.date) >= parse_date('2/2/2023')])
+        total = wins[p]['total']
         for i in range(1, p+1):
             ws = wins[p][i]
             print(f'{i}\t{ws}\t{ws / total}')
@@ -788,16 +829,16 @@ def main():
     games, unique_decks, decks_by_names = parse_records(record_filepath, until_date=date)
     wins = update_record_results(games, unique_decks, decks_by_names)
     # print_decks(unique_decks, key=alphabetical)
-    # print_wins(games, wins)
+    print_wins(wins)
 
     # pods(unique_decks)
 
     # random.seed(8675309)
     # sim(unique_decks, decks_by_names)
 
-    t = tiers(match_quality(unique_decks))
+    # t = tiers(match_quality(unique_decks))
     # print_tier_groups_graph(t)
-    print_tier_groups(t)
+    # print_tier_groups(t)
 
     # exposure_tiers(unique_decks)
     # for d, r, q in match_quality(unique_decks):
