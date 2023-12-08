@@ -784,7 +784,7 @@ def main():
 
     record_filepath = './data/edh.json'
 
-    date = "11/26/2023"
+    date = "12/31/2999"
     games, unique_decks, decks_by_names = parse_records(record_filepath, until_date=date)
     wins = update_record_results(games, unique_decks, decks_by_names)
     # print_decks(unique_decks, key=alphabetical)
@@ -792,11 +792,12 @@ def main():
 
     # pods(unique_decks)
 
-    random.seed(8675309)
-    sim(unique_decks, decks_by_names)
+    # random.seed(8675309)
+    # sim(unique_decks, decks_by_names)
 
     t = tiers(match_quality(unique_decks))
-    print_tier_groups_graph(t)
+    # print_tier_groups_graph(t)
+    print_tier_groups(t)
 
     # exposure_tiers(unique_decks)
     # for d, r, q in match_quality(unique_decks):

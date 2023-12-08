@@ -3991,6 +3991,158 @@
           }
         }
       ]
+    },
+    {
+      "date": "12/7/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Ruhan"
+            },
+            {
+              "player": "June",
+              "deck": "Yidris"
+            }
+          ],
+          "winners": ["Ruhan"],
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Nethroi",
+                "scoops": [
+                  "Yidris"
+                ]
+              }
+            ],
+            "7": [
+              {
+                "eliminator": "Ruhan",
+                "eliminated": [
+                  "Nethroi"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Erinis, Scion of Halaster"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Ruhan"
+            }
+          ],
+          "winners": ["Erinis, Scion of Halaster"],
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Erinis, Scion of Halaster",
+                "eliminated": [
+                  "Nethroi",
+                  "Ruhan"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Skullbriar"
+            },
+            {
+              "player": "June",
+              "deck": "Yennett"
+            }
+          ],
+          "winners": ["Muldrotha"],
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Muldrotha",
+                "eliminated": [
+                  "Skullbriar",
+                  "Yennett"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Go-Shintai"
+            },
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Chainer"
+            }
+          ],
+          "winners": ["Chainer"],
+          "eliminations": {
+            "10": [
+              {
+                "eliminator": "Chainer",
+                "eliminated": [
+                  "Go-Shintai",
+                  "Tuvasa"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Tuvasa"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Go-Shintai"
+            }
+          ],
+          "winners": ["Omnath"],
+          "eliminations": {
+            "8": [
+              {
+                "eliminator": "Omnath",
+                "eliminated": [
+                  "Tuvasa",
+                  "Go-Shintai"
+                ]
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }
