@@ -45,6 +45,8 @@ class Deck:
         self.winrate = None
         self.expected_winrate = None
         self.winrate_delta = None
+        self.toaewr = None
+        self.toaewr_delta = None
         self.op_winrate = None
         self.wrx1 = None
         self.mu = None
@@ -172,7 +174,7 @@ class Deck:
         self.expected_winrate = 1 / avg_n_players
         self.winrate_delta = self.winrate - self.expected_winrate
 
-        towr = self.turn_order_expected_winrate(wins_by_turn_order)
+        self._calc_turn_order_expected_winrate(wins_by_turn_order)
 
         if len(self.wins_by_turn):
             self._avg_win_turn = statistics.mean(self.wins_by_turn.elements())
@@ -189,15 +191,19 @@ class Deck:
 
         self.wrx1 = (self.winrate + 1) * (self.op_winrate + 1)
 
-    def turn_order_expected_winrate(self, wins_by_turn_order):
+    def _calc_turn_order_expected_winrate(self, wins_by_turn_order):
         turn_position_counts = {
-            3: Counter(),
-            4: Counter(),
+            3: Counter({
+                i: 0 for i in range(1, 4)
+            }),
+            4: Counter({
+                i: 0 for i in range(1, 5)
+            }),
         }
 
         pod_size3 = 0
         pod_size4 = 0
-        total_games = len(self.games)
+        total_games = 0
 
         for game in self.games:
             if parse_date(game.date) >= parse_date('2/2/2023'):
@@ -208,23 +214,32 @@ class Deck:
                     pod_size4 += 1
                 else:
                     Exception(f'Game with pod size {pod_size} dated {game.date}')
+                total_games += 1
                 turn_position = game.decks.index(self.name) + 1
                 turn_position_counts[pod_size][turn_position] += 1
 
+        if not total_games:
+            return 0
+
         turn_position_rates = {
             pod_size: {
-                turn_position: count / counts.total()
+                turn_position: 0 if not counts.total() else count / counts.total()
                 for turn_position, count in counts.items()
             }
             for pod_size, counts in turn_position_counts.items()
         }
 
-        pod_size3_ewr = sum(map(lambda pos: turn_position_rates[3][pos] * wins_by_turn_order[3][pos], range(1, 4)))
-        pod_size4_ewr = sum(map(lambda pos: turn_position_rates[4][pos] * wins_by_turn_order[4][pos], range(1, 5)))
+        pod_size3_ewr = sum(map(
+            lambda pos: turn_position_rates[3][pos] * (wins_by_turn_order[3][pos]/wins_by_turn_order[3]['total']),
+            range(1, 4))
+        )
+        pod_size4_ewr = sum(map(
+            lambda pos: turn_position_rates[4][pos] * (wins_by_turn_order[4][pos]/wins_by_turn_order[4]['total']),
+            range(1, 5))
+        )
 
-
-
-        print('hi')
+        self.toaewr = ((pod_size3 * pod_size3_ewr) + (pod_size4 * pod_size4_ewr))/total_games
+        self.toaewr_delta = self.winrate - self.toaewr
 
 
 class Game:
@@ -473,9 +488,10 @@ def calculate_ranks(decks):
 def print_decks(decks, key):
     def print_deck(d):
         print(d.get_simple_alias(), d.architect, d.wins, d.played, d.winrate, d.expected_winrate, d.winrate_delta,
-              d.get_fastest_win(), d.get_avg_win_turn(), d.get_n_eliminations(), d.get_fastest_elim(),
-              d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate, d.wrx1,
-              d.mmr.mu, d.mmr.sigma,
+              '?' if d.toaewr is None else d.toaewr, '?' if d.toaewr_delta is None else d.toaewr_delta,
+              d.get_fastest_win(), d.get_avg_win_turn(), d.get_n_eliminations(),
+              d.get_fastest_elim(), d.get_avg_elim_turn(), d.get_assists(), d.score, d.op_winrate,
+              d.wrx1, d.mmr.mu, d.mmr.sigma,
               d.ranks['by_exposure'], d.rank_delta['by_exposure'],
               d.ranks['by_mmr'], d.rank_delta['by_mmr'],
               d.ranks['by_wr_delta'], d.rank_delta['by_wr_delta'],
@@ -484,7 +500,9 @@ def print_decks(decks, key):
               sep='\t'
               )
 
-    header = "name\tplayer\twins\tplayed\twin %\tex. win %\twin % delta\tfastest win\tavg win turn\teliminations" \
+    header = "name\tplayer\twins\tplayed\twin %\tex. win %\twin % delta" \
+             "\tt.o. ex. win %\tt.o. ex. win % delta" \
+             "\tfastest win\tavg win turn\teliminations" \
              "\tfastest elimination\tavg elim turn\tassists\tscore\top win %" \
              "\twrx1 ((win % + 1) x (op win % + 1))\tmmr\tsigma" \
              "\tBy exposure\tΔ" \
@@ -828,7 +846,7 @@ def main():
     date = "12/31/2999"
     games, unique_decks, decks_by_names = parse_records(record_filepath, until_date=date)
     wins = update_record_results(games, unique_decks, decks_by_names)
-    # print_decks(unique_decks, key=alphabetical)
+    print_decks(unique_decks, key=alphabetical)
     print_wins(wins)
 
     # pods(unique_decks)
