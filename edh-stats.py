@@ -8,7 +8,6 @@ from collections import Counter
 
 import trueskill
 from trueskill import Rating, rate
-from trueskill.backends import cdf
 
 
 class Deck:
@@ -26,6 +25,7 @@ class Deck:
         self.mmr = Rating()
         self._assists = 0
         self.games = []
+        self.avg_pod_size = 0
         self.ranks = {
             'by_tbs': '',
             'by_wr_delta': '',
@@ -58,7 +58,8 @@ class Deck:
         self._avg_elim_turn = 100
         self._fastest_elim = 100
 
-    def is_ranked(self):
+    def is_ranked(self, n_decks_factor):
+        required_games = n_decks_factor * (self.avg_pod_size / (math.log2(math.gamma(1 + self.avg_pod_size))))
         return self.played > 2
 
     def get_alias(self):
@@ -167,11 +168,11 @@ class Deck:
         self.ranks[metric] = rank
 
     def calculate_metrics(self, decks_by_names, wins_by_turn_order):
-        avg_n_players = statistics.mean(
+        self.avg_pod_size = statistics.mean(
             map(lambda game: len(game.decks), self.games)
         )
         self.winrate = self.wins / self.played
-        self.expected_winrate = 1 / avg_n_players
+        self.expected_winrate = 1 / self.avg_pod_size
         self.winrate_delta = self.winrate - self.expected_winrate
 
         self._calc_turn_order_expected_winrate(wins_by_turn_order)
@@ -443,7 +444,11 @@ def update_record_results(games, unique_decks, decks_by_names):
     last_date = games[-1].date
     past_games, new_games = partition(lambda g: g.date != last_date, games)
 
+    # n_games_factor = math.log2(len([d for d in unique_decks if d.played]))
+    # ranked = set(d for d in unique_decks if d.is_ranked(n_games_factor))
     update(past_games, predicate=lambda d: d.played)
+    # n_games_factor = math.log2(len(unique_decks))
+    # ranked2 = set(d for d in unique_decks if d.is_ranked(n_games_factor))
     update(new_games)
 
     return wins_by_turn_order
@@ -451,7 +456,10 @@ def update_record_results(games, unique_decks, decks_by_names):
 
 def calculate_ranks(decks):
     env = trueskill.global_env()
-    ranked = [d for d in decks if d.is_ranked()]
+
+    n_decks_factor = math.log2(len(decks))
+
+    ranked = [d for d in decks if d.is_ranked(n_decks_factor)]
 
     for metric, ranking in {
         'by_tbs': lambda d: (
@@ -512,7 +520,9 @@ def print_decks(decks, key):
              "\tBy speed\tΔ"
     print(header)
 
-    ranked, unranked = partition(lambda d: d.is_ranked(), sorted(decks, key=key))
+    n_players_factor = math.log2(len(decks))
+
+    ranked, unranked = partition(lambda d: d.is_ranked(n_players_factor), sorted(decks, key=key))
 
     for deck in ranked:
         print_deck(deck)
