@@ -4143,6 +4143,244 @@
           }
         }
       ]
+    },
+    {
+      "date": "12/14/2023",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Aegar"
+            },
+            {
+              "player": "June",
+              "deck": "Yennett"
+            },
+            {
+              "player": "Jason",
+              "deck": "Talrand"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            }
+          ],
+          "winners": ["Aegar"],
+          "eliminations": {
+            "14": [
+              {
+                "eliminator": "Muldrotha",
+                "scoops": [
+                  "Yennett"
+                ]
+              }
+            ],
+            "15": [
+              {
+                "eliminator": "Talrand",
+                "eliminated": [
+                  "Muldrotha"
+                ]
+              }
+            ],
+            "17": [
+              {
+                "eliminator": "Aegar",
+                "eliminated": [
+                  "Talrand"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "1/4/2024",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Storvald"
+            },
+            {
+              "player": "June",
+              "deck": "Yennett"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            },
+            {
+              "player": "Tony",
+              "deck": "Liesa"
+            }
+          ],
+          "winners": ["Liesa"],
+          "eliminations": {
+            "12": [
+              {
+                "eliminator": "Nethroi",
+                "eliminated": [
+                  "Storvald"
+                ]
+              }
+            ],
+            "15": [
+              {
+                "eliminator": "Liesa",
+                "eliminated": [
+                  "Yennett"
+                ]
+              }
+            ],
+            "16": [
+              {
+                "eliminator": "Liesa",
+                "eliminated": [
+                  "Nethroi"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Yennett"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Alela, Artful Provocateur"
+            },
+            {
+              "player": "Tony",
+              "deck": "Linvala"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Storvald"
+            }
+          ],
+          "winners": ["Alela, Artful Provocateur"],
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Alela, Artful Provocateur",
+                "eliminated": [
+                  "Yennett",
+                  "Linvala",
+                  "Storvald"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Omnath"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Kozilek"
+            },
+            {
+              "player": "June",
+              "deck": "Animar"
+            }
+          ],
+          "winners": ["Omnath"],
+          "eliminations": {
+            "6": [
+              {
+                "eliminator": "Animar",
+                "eliminated": [
+                  "Kozilek"
+                ]
+              },
+              {
+                "eliminator": "Omnath",
+                "eliminated": [
+                  "Animar"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "1/6/2024",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Pham",
+              "deck": "Saruman"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Ognis"
+            },
+            {
+              "player": "Jason",
+              "deck": "The Golden Throne"
+            },
+            {
+              "player": "Tony",
+              "deck": "Elsha"
+            }
+          ],
+          "winners": ["Saruman"],
+          "eliminations": {
+            "10": [
+              {
+                "eliminator": "Saruman",
+                "eliminated": [
+                  "Ognis","The Golden Throne","Elsha"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Tivit"
+            },
+            {
+              "player": "Jason",
+              "deck": "Teysa",
+              "architect": "Tony"
+            },
+            {
+              "player": "Tony",
+              "deck": "Linvala"
+            },
+            {
+              "player": "Pham",
+              "deck": "Gabriel"
+            }
+          ],
+          "winners": ["Teysa"],
+          "eliminations": {
+            "13": [
+              {
+                "eliminator": "Teysa",
+                "eliminated": [
+                  "Tivit","Linvala","Gabriel"
+                ]
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }
