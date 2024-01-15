@@ -4381,6 +4381,210 @@
           }
         }
       ]
+    },
+    {
+      "date": "1/11/2024",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Rachael",
+              "deck": "Muldrotha"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Feather"
+            },
+            {
+              "player": "June",
+              "deck": "Sharuum"
+            }
+          ],
+          "winners": ["Sharuum"],
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Sharuum",
+                "eliminated": [
+                  "Muldrotha","Feather"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Feather"
+            },
+            {
+              "player": "June",
+              "deck": "Amareth"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Nethroi"
+            }
+          ],
+          "winners": ["Nethroi"],
+          "eliminations": {
+            "11": [
+              {
+                "eliminator": "Nethroi",
+                "eliminated": [
+                  "Feather"
+                ]
+              }
+            ],
+            "13": [
+              {
+                "eliminator": "Nethroi",
+                "eliminated": [
+                  "Amareth"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "June",
+              "deck": "Trostani"
+            },
+            {
+              "player": "Rachael",
+              "deck": "Olivia"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Florian"
+            }
+          ],
+          "winners": ["Florian"],
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Florian",
+                "eliminated": [
+                  "Trostani","Olivia"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "1/12/2024",
+      "games": [
+        {
+          "players": [
+            {
+              "player": "Matt",
+              "deck": "Lucea"
+            },
+            {
+              "player": "Pham",
+              "deck": "Chatterfang"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Zirilan"
+            }
+          ],
+          "winners": ["Chatterfang"],
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Lucea",
+                "eliminated": [
+                  "Zirilan"
+                ]
+              }
+            ],
+            "8": [
+              {
+                "eliminator": "Chatterfang",
+                "eliminated": [
+                  "Lucea"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Hooper",
+              "deck": "Shorikai"
+            },
+            {
+              "player": "Matt",
+              "deck": "Sefris",
+              "architect": "Pham"
+            },
+            {
+              "player": "Pham",
+              "deck": "Ur-Dragon"
+            }
+          ],
+          "winners": ["Ur-Dragon"],
+          "eliminations": {
+            "9": [
+              {
+                "eliminator": "Sefris",
+                "eliminated": [
+                  "Shorikai"
+                ]
+              },
+              {
+                "eliminator": "Ur-Dragon",
+                "eliminated": [
+                  "Sefris"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "players": [
+            {
+              "player": "Pham",
+              "deck": "Sefris"
+            },
+            {
+              "player": "Hooper",
+              "deck": "Gwyn"
+            },
+            {
+              "player": "Matt",
+              "deck": "Xenagos",
+              "architect": "Pham"
+            }
+          ],
+          "winners": ["Gwyn"],
+          "eliminations": {
+            "7": [
+              {
+                "eliminator": "Gwyn",
+                "eliminated": [
+                  "Sefris"
+                ]
+              }
+            ],
+            "9": [
+              {
+                "eliminator": "Gwyn",
+                "eliminated": [
+                  "Xenagos"
+                ]
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }
